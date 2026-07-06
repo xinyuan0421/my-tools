@@ -1,0 +1,4918 @@
+================================================================================
+                    表格对比报告（忽略标题）
+================================================================================
+
+差分2E3.xls:    133 条需求
+差分10327.xls:  119 条需求
+共同需求ID:     114 条
+内容完全相同:   25 条  ['10197', '10199', '10221', '10295', '10298', '10302', '10316', '10317', '10318', '10322', '10323', '10328', '10331', '10335', '10342', '10343', '11949', '11997', '11998', '12044', '12045', '12048', '12052', '12053', '13079']
+内容存在差异:   89 条
+
+仅在差分2E3中 (19 条): 13707, 13708, 13709, 13710, 13711, 13712, 13713, 13714, 13715, 15354, 17145, 17701, 17703, 17704, 17705, 17718, 17724, 17725, 18335
+仅在差分10327中 (5 条): 12030, 12034, 12049, 12057, 12058
+
+================================================================================
+                    内容差异详情（已忽略章节标题/属性/ID行）
+================================================================================
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 9969
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [9969]
++++ 差分10327 [9969]
+@@ -1,10 +1,35 @@
+ 需求描述:
+ 1 整车模式
+-\
++车辆生命周期状态：正常状态、工厂状态、运输状态、碰撞状态、转毂状态、展车状态、工程状态、维修状态
++用户当前状态：舒适、驾驶、自动泊车
+ 2 报警类型及优先级
+-仪表报警音列表类型及优先级参考：仪表报警策略.doc。
+-备注：报警音参考“声音”列为“是”的内容。
+-3 音频子系统提供设置接口供其他方调用。 设置接口参数： 报警类型等级 , 音源类型等。
+-示例如：XXXXAlarmSet(报警类型等级, 音源类型,......)。 音频系统根据其他方的设置接口参数对应发声。
+-(1) => (2):
+-Description modified.
++序号 优先级报警类型 声音提示类型声音类型
++1 1 倒车提示告警音 报警提示音 触发倒挡声音，1声倒挡提示音
++2 1 ELK (紧急车道保持)告警音 报警提示音 \
++3 1 BSD (盲区监测)告警音 报警提示音 \
++4 1 AES (紧急避让辅助)告警音 报警提示音 \
++5 1 LOCP(侧向障碍物防碰撞)告警音 报警提示音 \
++6 1 热失控故障告警音 报警提示音 \
++7 1 EPB文言告警音 报警提示音 参考“主动提醒声音1（弹窗通知）
++20220701”，一声：滴答
++8 1 驱动电机及控制器过热告警音 报警提示音 \
++9 1 驱动电机故障告警音 报警提示音 \
++10 2 EBD故障告警音 报警提示音
++11 2 制动系统故障告警音 报警提示音 1声通用报警音（1Hz），时长1s
++12 2 制动液位低告警音 报警提示音 1声通用报警音（1Hz），时长1s
++13 2 制动液位传感器故障告警音 报警提示音 1声通用报警音（1Hz），时长1s
++14 2 电子制动力分配故障告警音 报警提示音 1声通用报警音（1Hz），时长1s
++15 2 驻车力不足报警 报警提示音 1声通用报警音（1Hz），时长1s
++16 3 危险警告灯告警音 报警提示音 ON: 类似“滴”的声音
++OFF: 类似“哒”的声音
++17 3 换挡失败告警音 报警提示音 提示一声
++18 3 动力电池电量低告警音 报警提示音 1声通用报警音（1Hz），时长1s
++19 3 左/右转向提示音 报警提示音 tick/tock转向提示音，频率由信号
++输入控制
++20 3 驱动功率受限提示音 报警提示音 \
++21 3 门开提示音 报警提示音 \
++22 3 动力电池电量低，已禁止继续行驶报警提示音 1声通用报警音（1Hz），时长1s
++22 3 动力电池电量低，部分功能受限 报警提示音 1声通用报警音（1Hz），时长1s
++23 4 安全带未系提示音 报警提示音 \
++24 4 遗留物品提醒 报警提示音 \
++25 4 直接式生命体监测 报警提示音 \
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10135
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10135]
++++ 差分10327 [10135]
+@@ -29,7 +29,6 @@
+ b、当实际车速 VehicleSpeed_SigGrp- VehicleSpeed≥10km/h时，指示车速=1.025*V+1.25（V实际车速），显示为
+ 计算后舍弃小数后的整数数值；
+ c、当指示车速按照上述定义计算取整后＞299km/h，显示为最大显示车速299km/h；
+-
+ 4、外发车速信号 CcuICD_SigGrp- VehicleSpdDisplayValid、 CcuICD_SigGrp- VehicleSpdDisplay的定义：
+ a、判断【 VehicleSpeed_SigGrp- VehicleSpeedValid， VehicleSpeed_SigGrp- VehicleSpeed】信号丢失，
+ CcuICD_SigGrp- VehicleSpdDisplayValid=0x0， CcuICD_SigGrp- VehicleSpdDisplay=0x1FFF；
+@@ -45,12 +44,3 @@
+ 2、判断【 VehicleSpeed_SigGrp- VehicleSpeedValid， VehicleSpeed_SigGrp- VehicleSpeed】信号丢失，车速指示“-
+ -km/h”；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description Reference 'VehicleSpeed_SigGrp' removed.
+-Description Reference 'CcuICD_SigGrp' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'VehicleSpeed_SigGrp' added.
+-Description Reference 'CcuICD_SigGrp' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'UsgModSts' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10153
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10153]
++++ 差分10327 [10153]
+@@ -53,7 +53,6 @@
+ 9、外发显示总计里程 Odometer信号的定义：
+ a、外发信号精度0.1km；
+ b、 CarModSts=0x0-0x7， UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking时，发送总计里程的整数
+-
+ （与显示值保持一致）和小数数值（内部记忆）；
+ c、 CarModSts=0x0-0x7， UsgModSts=0x1 Standby时，发送内部记忆值；
+ 故障及恢复处理：
+@@ -61,14 +60,3 @@
+ 累计，保持当前值显示；
+ 2、判断【PrpsnSysActv】信号丢失，里程停止累计，保持当前值显示；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description Reference 'VehicleSpeed_SigGrp' removed.
+-Description Reference 'Odometer' removed.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'PrpsnSysActv' removed.
+-Description Reference 'VehicleSpeed_SigGrp' added.
+-Description Reference 'Odometer' added.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'PrpsnSysActv' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10154
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10154]
++++ 差分10327 [10154]
+@@ -10,7 +10,6 @@
+ DispHvBattLvlOfChrg
+ 输出信号：
+ SignalName
+-
+ /
+ 显示要求：
+ 1、显示方式：建议模拟+数字显示，同时带电量表标识显示，具体以HMI设计为准
+@@ -29,10 +28,3 @@
+ 1、连续＜【Timeout】时间内未收到【 DispHvBattLvlOfChrg】信号，电量显示保持当前状态不变；
+ 2、判断【 DispHvBattLvlOfChrg】信号丢失，电量表模拟显示为“空”，数值显示为“- -”；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'DispHvBattLvlOfChrg' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'DispHvBattLvlOfChrg' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10155
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10155]
++++ 差分10327 [10155]
+@@ -11,7 +11,6 @@
+ 输出信号：
+ SignalName
+ /
+-
+ 显示要求：
+ 1、显示方式：建议模拟+数字显示，同时带功率表标识（如PWR）显示，具体以HMI设计为准
+ （示意图）
+@@ -27,10 +26,3 @@
+ 1、连续＜【Timeout】时间内未收到【 DispOfPrpsnPwrPercAct】信号，功率指示保持当前状态不变；
+ 2、判断【 DispOfPrpsnPwrPercAct】信号丢失，功率表模拟显示为“0功率对应状态”，数值显示为“- -”；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'DispOfPrpsnPwrPercAct' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'DispOfPrpsnPwrPercAct' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10156
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10156]
++++ 差分10327 [10156]
+@@ -1,6 +1,6 @@
+ 需求描述:
+ 配置字：
+-驱动动力形式BAE
++纯电/增程
+ 整车条件：
+ 指示需同时满足以下两个条件：
+ 1、 UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking
+@@ -18,18 +18,9 @@
+ 3、显示要求：正常油量以及低油量时的显示效果，应能明显区分；
+ 4、低油量判断参见LowFuel燃油液位低指示灯定义；
+ 功能描述：
+-1、驱动动力形式BAE01（纯电动）时不支持显示；驱动动力形式BAE02（增程式混动）时支持显示；
++1、配置为增程版型时支持显示，为纯电版型不支持显示；
+ 2、根据燃油百分比信号显示，0%显示为“空”，100%显示为“满”；
+ 故障及恢复处理：
+-
+ 1、连续＜【Timeout】时间内未收到【 FuelOilPrec】信号，燃油表指示保持当前状态不变；
+ 2、判断【 FuelOilPrec】信号丢失，燃油表显示为“空”；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'FuelOilPrec' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'FuelOilPrec' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10157
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10157]
++++ 差分10327 [10157]
+@@ -1,6 +1,6 @@
+ 需求描述:
+ 配置字：
+-驱动动力形式 BAE
++纯电/增程
+ 整车条件：
+ 指示需同时满足以下两个条件：
+ 1、 UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking
+@@ -10,14 +10,13 @@
+ DstEstimdToEmptyForDrvg_SigGrp- DstEstimdToEmptyForDrvgElec
+ 输出信号：
+ SignalName
+-
+ /
+ 显示要求：
+ 1、显示方式：建议数字显示，具体以HMI设计为准
+-2、关联配置：驱动动力形式
+-驱动动力形式 BAE01（纯电动）时，纯电续航里程显示模式 CLTC， CLTC常显
++2、关联配置：纯电版型/增程版型；
++纯电版型时，纯电续航里程显示模式CLTC，CLTC常显
+ （示意图）
+-驱动动力形式 BAE02（增程式混动）时，纯电续航里程不显示模式 CLTC
++增程版型时，纯电续航里程不显示模式CLTC
+ （示意图）
+ 3、显示精度：1km；
+ 4、显示范围：0~1999km，超过1999km显示1999km；
+@@ -30,11 +29,3 @@
+ 2、判断【 DstEstimdToEmptyForDrvg_SigGrp- DstEstimdToEmptyForDrvgElec】信号丢失，纯电续航里程显示为“-
+ -km”；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'DstEstimdToEmptyForDrvg_SigGrp' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'DstEstimdToEmptyForDrvg_SigGrp' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10158
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10158]
++++ 差分10327 [10158]
+@@ -1,10 +1,9 @@
+ 需求描述:
+ 配置字：
+-驱动动力形式BAE
++纯电/增程
+ 整车条件：
+ 指示需同时满足以下两个条件：
+ 1、 UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking
+-
+ 2、 CarModSts=0x0-0x7
+ 输入信号：
+ SignalName
+@@ -19,7 +18,7 @@
+ 3、显示范围：0~1999km，超过1999km显示1999km；
+ 4、刷新周期：500ms；
+ 功能描述：
+-1、驱动动力形式BAE02（增程式混动）时支持显示，驱动动力形式BAE01（纯电动）时不支持显示；
++1、配置为增程版型时支持显示，纯电版型不支持显示；
+ 2、根据增程续航里程信号 DstEstimdToEmptyForDrvg_SigGrp- DstEstimdToEmptyForDrvgEng显示；
+ 故障及恢复处理：
+ 1、连续＜【Timeout】时间内未收到【 DstEstimdToEmptyForDrvg_SigGrp- DstEstimdToEmptyForDrvgEng】信
+@@ -27,11 +26,3 @@
+ 2、判断【 DstEstimdToEmptyForDrvg_SigGrp- DstEstimdToEmptyForDrvgEng】信号丢失，增程续航里程显示为“- -
+ km”；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'DstEstimdToEmptyForDrvg_SigGrp' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'DstEstimdToEmptyForDrvg_SigGrp' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10159
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10159]
++++ 差分10327 [10159]
+@@ -1,6 +1,6 @@
+ 需求描述:
+ 配置字：
+-驱动动力形式BAE
++纯电/增程
+ 整车条件：
+ 指示需同时满足以下两个条件：
+ 1、 UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking
+@@ -11,7 +11,6 @@
+ 输出信号：
+ SignalName
+ /
+-
+ 显示要求：
+ 1、显示方式：建议数字显示，具体以HMI设计为准
+ （示意图）
+@@ -19,7 +18,7 @@
+ 3、显示范围：0~3998km，超过3998km显示3998km；
+ 4、刷新周期：500ms；
+ 功能描述：
+-1、驱动动力形式BAE02（增程式混动）时支持显示， CLTC常显，驱动动力形式BAE01（纯电动）时不支持显示；
++1、配置为增程版型时支持显示，CLTC常显，为纯电版型不支持显示；
+ 2、根据总续航里程信号 DstEstimdToEmptyForDrvg_SigGrp- DstEstimdToEmptyForDrvgTot显示；
+ 故障及恢复处理：
+ 1、连续＜【Timeout】时间内未收到【 DstEstimdToEmptyForDrvg_SigGrp- DstEstimdToEmptyForDrvgTot】信号，
+@@ -27,11 +26,3 @@
+ 2、判断【 DstEstimdToEmptyForDrvg_SigGrp- DstEstimdToEmptyForDrvgTot】信号丢失，总续航里程显示为“- -
+ km”；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'DstEstimdToEmptyForDrvg_SigGrp' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'DstEstimdToEmptyForDrvg_SigGrp' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10160
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10160]
++++ 差分10327 [10160]
+@@ -21,15 +21,7 @@
+ N GearLvrIndcn=0x2
+ D GearLvrIndcn=0x3
+ 不显示 不满足上述条件
+-
+ 故障及恢复处理：
+ 1、连续＜【Timeout】时间内未收到【 GearLvrIndcn】信号，档位指示保持当前状态不变；
+ 2、判断【 GearLvrIndcn】信号丢失，档位不显示；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'GearLvrIndcn' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'GearLvrIndcn' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10161
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10161]
++++ 差分10327 [10161]
+@@ -3,7 +3,6 @@
+ /
+ 整车条件：
+ 指示需同时满足以下两个条件：
+-
+ 1、 UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking
+ 2、 CarModSts=0x0-0x7
+ 输入信号：
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10163
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10163]
++++ 差分10327 [10163]
+@@ -20,7 +20,6 @@
+ 功能描述：
+ 1、TmsOutsideTempValid ℃=0x1时，室外温度信号无效，显示为“-.- ”
+ 2、TmsOutsideTempValid=0x0时，室外温度信号有效，根据接收的TmsOutsideTemp信号显示；
+-
+ 故障及恢复处理：
+ 1、连续＜【Timeout】时间内未收到【TmsOutsideTemp，TmsOutsideTempValid】信号，室外温度显示保持当前
+ 状态不变；
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10192
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10192]
++++ 差分10327 [10192]
+@@ -1,7 +1,6 @@
+ 需求描述:
+ 配置字：
+-驱动动力形式BAE
+-驱动方式BBZ
++纯电/增程、两驱/四驱
+ 整车条件：
+ 指示需同时满足以下两个条件：
+ 1、 UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking
+@@ -22,11 +21,9 @@
+ 增程器启动，动力电池断开，电机驱动 发动机发电机电机驱动轴车轮
+ 增程器启动，动力电池充电，电机发电 发动机发电机动力电池
+ 车轮驱动轴电机动力电池
+-
+ （示意图）
+ 功能描述：
+-1、配置为驱动动力形式BAE01（纯电动）& 驱动方式BBZ01（单电机后驱），界面元素包含动力电池、后电机、
+-驱动轴、车轮
++1、配置为纯电后驱时，界面元素包含动力电池、后电机、驱动轴、车轮
+ 指示 逻辑
+ 能量流动画显示
+ 动力电池后电机驱动轴车轮
+@@ -39,8 +36,7 @@
+ 量流动画显示
+ DispOfPrpsnModForEv=其他 or 判断【 DispOfPrpsnModForEv】信号
+ 丢失
+-2、配置为驱动动力形式BAE01（纯电动）& 驱动方式BBZ02（双电机四驱，前置+后置）时，界面元素包含动力电
+-池、前电机、后电机、驱动轴、车轮
++2、配置为纯电四驱时，界面元素包含动力电池、前电机、后电机、驱动轴、车轮
+ 指示 逻辑
+ 能量流动画显示
+ 动力电池前/后电机驱动轴车轮
+@@ -73,15 +69,13 @@
+ 能量流动画显示
+ DispOfPrpsnModForEv=其他 or 判断【 DispOfPrpsnModForEv】信号
+ 丢失
+-3、配置为驱动动力形式BAE02（增程式混动）& 驱动方式BBZ01（单电机后驱）时，界面元素包含动力电池、后
+-电机、驱动轴、车轮、发动机、发电机
++3、配置为增程后驱时，界面元素包含动力电池、后电机、驱动轴、车轮、发动机、发电机
+ 指示 逻辑
+ 能量流动画显示
+ 动力电池后电机驱动轴车轮
+ 发动机、发电机置灰效果，与能量流部件
++明显区分，具体以HMI设计为准
+ DispOfPrpsnModForEv=0x4
+-
+-明显区分，具体以HMI设计为准
+ 能量流动画显示
+ 车轮驱动轴后电机动力电池
+ 发动机、发电机置灰效果，与能量流部件
+@@ -107,11 +101,10 @@
+ DispOfPrpsnModForEv=0x10 or 0x11 0r 13
+ 能量流界面显示，无动画
+ 动力电池、后电机、驱动轴、车轮、发动
+-机、发电机
+ DispOfPrpsnModForEv=其他 or 判断【 DispOfPrpsnModForEv】信号
+ 丢失
+-4、配置为驱动动力形式BAE02（增程式混动）& 驱动方式BBZ02（双电机四驱，前置+后置）时，界面元素包含动
+-力电池、前电机、后电机、驱动轴、车轮、发动机、发电机
++机、发电机
++4、配置为增程四驱时，界面元素包含动力电池、前电机、后电机、驱动轴、车轮、发动机、发电机
+ 指示 逻辑
+ 能量流动画显示
+ 动力电池前/后电机驱动轴车轮
+@@ -155,11 +148,10 @@
+ DispOfPrpsnModForEv=0xA
+ 能量流动画显示
+ 发动机发电机动力电池后电机驱动
+-DispOfPrpsnModForEv=0xB
+-
+ 轴车轮
+ 前电机置灰效果，与能量流部件明显区
+ 分，具体以HMI设计为准
++DispOfPrpsnModForEv=0xB
+ 能量流动画显示
+ 发动机发电机动力电池
+ 车轮驱动轴后电机动力电池
+@@ -182,11 +174,10 @@
+ 动力电池置灰效果，与能量流部件明显区
+ 分，具体以HMI设计为准
+ DispOfPrpsnModForEv=0x10
+-能量流动画显示
++能量流动画显示 DispOfPrpsnModForEv=0x11
+ 发动机发电机前电机驱动轴车轮
+ 动力电池、后电机置灰效果，与能量流部
+ 件明显区分，具体以HMI设计为准
+-DispOfPrpsnModForEv=0x11
+ 能量流动画显示
+ 发动机发电机后电机驱动轴车轮
+ 动力电池、前电机置灰效果，与能量流部
+@@ -198,11 +189,3 @@
+ DispOfPrpsnModForEv=其他 or 判断【 DispOfPrpsnModForEv】信号
+ 丢失
+ MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'DispOfPrpsnModForEv' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'DispOfPrpsnModForEv' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10196
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10196]
++++ 差分10327 [10196]
+@@ -21,7 +21,6 @@
+ 显示要求：
+ 显示方式：3D车模动画、门开图标（可区分各门开启/关闭状态），具体以HMI设计为准
+ （示意图）
+-
+ 功能描述：
+ 1、各门状态显示定义如下：
+ 指示 逻辑
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10198
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10198]
++++ 差分10327 [10198]
+@@ -22,7 +22,6 @@
+ 雪地，及与之对应的界面效果 PrpsnModSts=0xB
+ 自定义模式，及与之对应的界面效果 PrpsnModSts=0x4
+ 经济，及与之对应的界面效果 不满足上述条件
+-
+ 故障及恢复处理：
+ 1、连续＜【Timeout】时间内未收到【 PrpsnModSts】信号，驾驶模式显示保持当前状态不变；
+ 2、判断【 PrpsnModSts】信号丢失，驾驶模式显示保持当前状态不变，如第一次上电显示为经济模式；
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10203
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10203]
++++ 差分10327 [10203]
+@@ -14,7 +14,6 @@
+ 显示要求：
+ 仪表屏显示不同行车界面；
+ 功能描述：
+-
+ 通过方向盘按键操作切换仪表屏不同行车界面，具体以HMI设计为准
+ 故障及恢复处理：
+ /
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10207
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10207]
++++ 差分10327 [10207]
+@@ -3,12 +3,11 @@
+ /
+ 整车条件：
+ 指示需同时满足以下两个条件：
+-
+ 1、 UsgModSts=0x1 Standby or 0x2 Convenience or 0x4 Driving or 0x5 Parking
+ 2、 CarModSts=0x0-0x7
+ 输入信号：
+ SignalName
+-HzrdLiWarn_SigGrp-ActnOfLedTurnHzrdLi
++ActnOfLedTurnHzrdLi
+ 输出信号：
+ SignalName
+ /
+@@ -20,23 +19,11 @@
+ 指示 逻辑
+ on
+ 满足以下任意条件：
+-1、 HzrdLiWarn_SigGrp-ActnOfLedTurnHzrdLi=0x1
+-2、 HzrdLiWarn_SigGrp-ActnOfLedTurnHzrdLi=0x3（控制左右转
+-向图标同时点亮）
++1、 ActnOfLedTurnHzrdLi=0x1
++2、 ActnOfLedTurnHzrdLi=0x3（控制左右转向图标同时点亮）
+ off
+ 不满足上述条件
+ 故障及恢复处理：
+-1、连续＜【Timeout】时间内未收到【 HzrdLiWarn_SigGrp-ActnOfLedTurnHzrdLi】信号，指示灯保持当前状态不
+-变；
+-2、判断【 HzrdLiWarn_SigGrp-ActnOfLedTurnHzrdLi】信号丢失，指示灯熄灭；
++1、连续＜【Timeout】时间内未收到【 ActnOfLedTurnHzrdLi】信号，指示灯保持当前状态不变；
++2、判断【 ActnOfLedTurnHzrdLi】信号丢失，指示灯熄灭；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Signal dependency 'ActnOfLedTurnHzrdLi' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'ActnOfLedTurnHzrdLi' removed.
+-Signal dependency 'HzrdLiWarn_SigGrp' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'HzrdLiWarn_SigGrp' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10208
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10208]
++++ 差分10327 [10208]
+@@ -5,10 +5,9 @@
+ 指示需同时满足以下两个条件：
+ 1、 UsgModSts=0x1 Standby or 0x2 Convenience or 0x4 Driving or 0x5 Parking
+ 2、 CarModSts=0x0-0x7
+-
+ 输入信号：
+ SignalName
+-HzrdLiWarn_SigGrp-ActnOfLedTurnHzrdLi
++ActnOfLedTurnHzrdLi
+ 输出信号：
+ SignalName
+ /
+@@ -20,23 +19,11 @@
+ 指示 逻辑
+ on
+ 满足以下任意条件：
+-1、 HzrdLiWarn_SigGrp-ActnOfLedTurnHzrdLi=0x2
+-2、 HzrdLiWarn_SigGrp-ActnOfLedTurnHzrdLi=0x3（控制左右转
+-向图标同时点亮）
++1、 ActnOfLedTurnHzrdLi=0x2
++2、 ActnOfLedTurnHzrdLi=0x3（控制左右转向图标同时点亮）
+ off
+ 不满足上述条件
+ 故障及恢复处理：
+-1、连续＜【Timeout】时间内未收到【 HzrdLiWarn_SigGrp-ActnOfLedTurnHzrdLi】信号，指示灯保持当前状态不
+-变；
+-2、判断【 HzrdLiWarn_SigGrp-ActnOfLedTurnHzrdLi】信号丢失，指示灯熄灭；
++1、连续＜【Timeout】时间内未收到【 ActnOfLedTurnHzrdLi】信号，指示灯保持当前状态不变；
++2、判断【 ActnOfLedTurnHzrdLi】信号丢失，指示灯熄灭；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Signal dependency 'ActnOfLedTurnHzrdLi' removed.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'ActnOfLedTurnHzrdLi' removed.
+-Signal dependency 'HzrdLiWarn_SigGrp' added.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'HzrdLiWarn_SigGrp' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10209
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10209]
++++ 差分10327 [10209]
+@@ -6,7 +6,6 @@
+ 1、 UsgModSts=0x1 Standby or 0x2 Convenience or 0x4 Driving or 0x5 Parking
+ 2、 CarModSts=0x0-0x7
+ 输入信号：
+-
+ SignalName
+ ExtrLtgStsHiBeam
+ 输出信号：
+@@ -26,10 +25,3 @@
+ 1、连续＜【Timeout】时间内未收到【 ExtrLtgStsHiBeam】信号，指示灯保持当前状态不变；
+ 2、判断【 ExtrLtgStsHiBeam】信号丢失，指示灯熄灭；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'ExtrLtgStsHiBeam' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'ExtrLtgStsHiBeam' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10210
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10210]
++++ 差分10327 [10210]
+@@ -1,6 +1,5 @@
+ 需求描述:
+ 配置字：
+-
+ /
+ 整车条件：
+ 指示需同时满足以下两个条件：
+@@ -26,10 +25,3 @@
+ 1、连续＜【Timeout】时间内未收到【 ExtrLtgStsLoBeam】信号，指示灯保持当前状态不变；
+ 2、判断【 ExtrLtgStsLoBeam】信号丢失，指示灯熄灭；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'ExtrLtgStsLoBeam' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'ExtrLtgStsLoBeam' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10211
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10211]
++++ 差分10327 [10211]
+@@ -25,10 +25,3 @@
+ 1、连续＜【Timeout】时间内未收到【 ExtrLtgStsPosLi】信号，指示灯保持当前状态不变；
+ 2、判断【 ExtrLtgStsPosLi】信号丢失，指示灯熄灭；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'ExtrLtgStsPosLi' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'ExtrLtgStsPosLi' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10213
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10213]
++++ 差分10327 [10213]
+@@ -1,5 +1,4 @@
+ 需求描述:
+-
+ 配置字：
+ /
+ 整车条件：
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10217
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10217]
++++ 差分10327 [10217]
+@@ -14,7 +14,6 @@
+ SignalName
+ /
+ 显示要求：
+-
+ 1、图标样式：
+ （建议），具体以HMI设计为准
+ 2、图标颜色：红色
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10219
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10219]
++++ 差分10327 [10219]
+@@ -15,7 +15,6 @@
+ 1、图标样式：
+ （建议），具体以HMI设计为准
+ 2、图标颜色：黄色
+-
+ 功能描述：
+ 指示 逻辑
+ on
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10220
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10220]
++++ 差分10327 [10220]
+@@ -12,7 +12,6 @@
+ SignalName
+ /
+ 显示要求：
+-
+ 1、图标样式：
+ （建议），具体以HMI设计为准
+ 2、图标颜色：红色
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10222
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10222]
++++ 差分10327 [10222]
+@@ -21,7 +21,6 @@
+ EscLampReq=0x1
+ 2Hz闪烁
+ EscLampReq=0x2
+-
+ off
+ 不满足上述条件
+ 故障及恢复处理：
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10223
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10223]
++++ 差分10327 [10223]
+@@ -6,7 +6,6 @@
+ 1、 UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking
+ 2、 CarModSts=0x0-0x7
+ 输入信号：
+-
+ SignalName
+ ESCSts_SigGrp- ESCOpenStatus
+ 输出信号：
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10224
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10224]
++++ 差分10327 [10224]
+@@ -27,7 +27,6 @@
+ on
+ 同时满足以下条件：
+ 1、 AVHSts_SigGrp- AVHAvailable≠0x0
+-
+ 2、 AVHSts_SigGrp- AVHStatus=0x2
+ on
+ AVHSts_SigGrp- AVHAvailable=0x0
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10226
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10226]
++++ 差分10327 [10226]
+@@ -27,7 +27,6 @@
+ on
+ 同时满足以下条件：
+ 1、 HDCSts_SigGrp- HDCAvailable≠0x0
+-
+ 2、 HDCSts_SigGrp- HDCStatus=0x2
+ on
+ HDCSts_SigGrp- HDCAvailable=0x0
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10228
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10228]
++++ 差分10327 [10228]
+@@ -22,7 +22,6 @@
+ SteerPwrSts_SigGrp- EpsCtrlFltSts=0x1 or 0x2
+ on
+ SteerPwrSts_SigGrp- EpsCtrlFltSts=0x3
+-
+ /
+ off
+ 不满足上述条件
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10230
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10230]
++++ 差分10327 [10230]
+@@ -1,12 +1,11 @@
+ 需求描述:
+ 配置字：
+-可变悬架形式BCE
++空气悬架
+ 整车条件：
+ 指示需同时满足以下两个条件：
+ 1、 UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking
+ 2、 CarModSts=0x0-0x7
+ 输入信号：
+-
+ SignalName
+ SusSysFltWrnSts_SigGrp- ASUSusHghtCtrlSysFltSts
+ 输出信号：
+@@ -14,26 +13,15 @@
+ /
+ 显示要求：
+ 1、图标样式：
+-/
+ （建议），具体以HMI设计为准
+-2、图标颜色：红色/黄色
++2、图标颜色：红色
+ 功能描述：
+-1、配置为可变悬架形式BCE02(单阀双腔空气悬架，软硬调节+高低调节)时，带指示灯显示；
+-2、配置为可变悬架形式BCE01（普通弹簧悬架，软硬调节）时，无指示灯显示；
++配置为带空气悬架是，带此指示灯显示；不带空气悬架时，无此指示灯显示；
+ 指示 逻辑
+-on SusSysFltWrnSts_SigGrp- ASUSusHghtCtrlSysFltSts=0x4
+-on SusSysFltWrnSts_SigGrp- ASUSusHghtCtrlSysFltSts=0x5
++on SusSysFltWrnSts_SigGrp- ASUSusHghtCtrlSysFltSts=0x4 or 0x5
+ off 不满足上述条件
+ 故障及恢复处理：
+ 1、连续＜【Timeout】时间内未收到【 SusSysFltWrnSts_SigGrp- ASUSusHghtCtrlSysFltSts】信号，指示灯保持当
+ 前状态不变；
+-2、判断【 SusSysFltWrnSts_SigGrp- ASUSusHghtCtrlSysFltSts】信号丢失，黄色指示灯常亮；
++2、判断【 SusSysFltWrnSts_SigGrp- ASUSusHghtCtrlSysFltSts】信号丢失，指示灯常亮；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'SusSysFltWrnSts_SigGrp' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'SusSysFltWrnSts_SigGrp' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10231
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10231]
++++ 差分10327 [10231]
+@@ -1,6 +1,6 @@
+ 需求描述:
+ 配置字：
+-可变悬架形式BCE
++空气悬架
+ 整车条件：
+ 指示需同时满足以下两个条件：
+ 1、 UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking
+@@ -16,11 +16,10 @@
+ （建议），具体以HMI设计为准
+ 2、图标颜色：黄色
+ 功能描述：
+-1、配置为可变悬架形式BCE02(单阀双腔空气悬架，软硬调节+高低调节)时，带此指示灯显示；
+-2、配置为可变悬架形式BCE01（普通弹簧悬架，软硬调节）时，无此指示灯显示；
++配置为带空气悬架是，带此指示灯显示；不带空气悬架时，无此指示灯显示；
+ 指示 逻辑
+ on
+-SusSysFltWrnSts_SigGrp- ASUSusDmprCtrlSysFltSts=0x2
++=0x2
+ off
+ 不满足上述条件
+ 故障及恢复处理：
+@@ -28,11 +27,3 @@
+ 当前状态不变；
+ 2、判断【 SusSysFltWrnSts_SigGrp- ASUSusDmprCtrlSysFltSts】信号丢失，指示灯常亮；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'SusSysFltWrnSts_SigGrp' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'SusSysFltWrnSts_SigGrp' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10232
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10232]
++++ 差分10327 [10232]
+@@ -1,6 +1,6 @@
+ 需求描述:
+ 配置字：
+-驱动动力形式BAE
++纯电/增程
+ 整车条件：
+ 指示需同时满足以下两个条件：
+ 1、 UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking
+@@ -16,12 +16,11 @@
+ （建议）（同时带加油口盖方向指示），具体以HMI设计为准
+ 2、图标颜色：黄色
+ 功能描述：
+-驱动动力形式BAE01（纯电动）时不支持显示；驱动动力形式BAE02（增程式混动）时支持显示；
++配置为增程版型时支持显示，为纯电版型不支持显示；
+ 指示 逻辑
+ on
+-FuelOilPrec≤20%（暂定）
+-在触发报警灯点亮后，需判断 FuelOilPrec≥30%（暂定）时，
+-
++FuelOilPrec≤TBD（暂定）
++在触发报警灯点亮后，需判断 FuelOilPrec≥TBD（暂定）时，
+ 指示灯熄灭
+ off
+ 不满足上述条件
+@@ -29,11 +28,3 @@
+ 1、连续＜【Timeout】时间内未收到【 FuelOilPrec】信号，指示灯保持当前状态不变；
+ 2、判断【 FuelOilPrec】信号丢失，指示灯熄灭；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'FuelOilPrec' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'FuelOilPrec' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10276
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10276]
++++ 差分10327 [10276]
+@@ -1,6 +1,6 @@
+ 需求描述:
+ 配置字：
+-驱动动力形式BAE
++纯电/增程
+ 整车条件：
+ 指示需同时满足以下两个条件：
+ 1、 UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking
+@@ -16,7 +16,7 @@
+ （建议），具体以HMI设计为准
+ 2、图标颜色：红色
+ 功能描述：
+-驱动动力形式BAE01（纯电动）时不支持显示；驱动动力形式BAE02（增程式混动）时支持显示；
++配置为增程版型时支持显示，为纯电版型不支持显示；
+ 指示 逻辑
+ on
+ EngOilPWarn=0x1
+@@ -26,11 +26,3 @@
+ 1、连续＜【Timeout】时间内未收到【 EngOilPWarn】信号，指示灯保持当前状态不变；
+ 2、判断【 EngOilPWarn】信号丢失，指示灯熄灭；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'EngOilPWarn' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'EngOilPWarn' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10279
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10279]
++++ 差分10327 [10279]
+@@ -1,6 +1,6 @@
+ 需求描述:
+ 配置字：
+-驱动动力形式BAE
++纯电/增程
+ 整车条件：
+ 指示需同时满足以下两个条件：
+ 1、 UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking
+@@ -16,22 +16,13 @@
+ （建议），具体以HMI设计为准
+ 2、图标颜色：红色
+ 功能描述：
+-驱动动力形式BAE01（纯电动）时不支持显示；驱动动力形式BAE02（增程式混动）时支持显示；
++配置为增程版型时支持显示，为纯电版型不支持显示；
+ 指示 逻辑
+ on
+ EngCooltIndcnReq=0x1
+ off
+ 不满足上述条件
+-
+ 故障及恢复处理：
+ 1、连续＜【Timeout】时间内未收到【 EngCooltIndcnReq】信号，指示灯保持当前状态不变；
+ 2、判断【 EngCooltIndcnReq】信号丢失，指示灯熄灭；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'EngCooltIndcnReq' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'EngCooltIndcnReq' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10282
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10282]
++++ 差分10327 [10282]
+@@ -1,7 +1,6 @@
+ 需求描述:
+ 配置字：
+-驱动动力形式BAE
+-
++纯电/增程
+ 整车条件：
+ 指示需同时满足以下两个条件：
+ 1、 UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking
+@@ -17,7 +16,7 @@
+ （建议），具体以HMI设计为准
+ 2、图标颜色：黄色
+ 功能描述：
+-驱动动力形式BAE01（纯电动）时不支持显示；驱动动力形式BAE02（增程式混动）时支持显示；
++配置为增程版型时支持显示，为纯电版型不支持显示；
+ 指示 逻辑
+ on
+ EngMILReq=0x1
+@@ -29,11 +28,3 @@
+ 1、连续＜【Timeout】时间内未收到【 EngMILReq】信号，指示灯保持当前状态不变；
+ 2、判断【 EngMILReq】信号丢失，指示灯熄灭；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'EngMILReq' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'EngMILReq' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10284
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10284]
++++ 差分10327 [10284]
+@@ -1,6 +1,6 @@
+ 需求描述:
+ 配置字：
+-驱动动力形式BAE
++纯电/增程
+ 整车条件：
+ 指示需同时满足以下两个条件：
+ 1、 UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking
+@@ -16,7 +16,7 @@
+ （建议），具体以HMI设计为准
+ 2、图标颜色：黄色
+ 功能描述：
+-驱动动力形式BAE01（纯电动）时不支持显示；驱动动力形式BAE02（增程式混动）时支持显示；
++配置为增程版型时支持显示，为纯电版型不支持显示；
+ 指示 逻辑
+ on
+ SvsReq=0x1
+@@ -26,11 +26,3 @@
+ 1、连续＜【Timeout】时间内未收到【 SvsReq】信号，指示灯保持当前状态不变；
+ 2、判断【 SvsReq】信号丢失，指示灯熄灭；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'SvsReq' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'SvsReq' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10285
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10285]
++++ 差分10327 [10285]
+@@ -21,17 +21,7 @@
+ IBMS_FaultLevel=0x3
+ off
+ 不满足上述条件
+-
+ 故障及恢复处理：
+ 1、连续＜【Timeout】时间内未收到【 IBMS_FaultLevel】信号，指示灯保持当前状态不变；
+ 2、判断【 IBMS_FaultLevel】信号丢失，指示灯熄灭；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'IBMS_FaultLevel' removed.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'IBMS_FaultLevel' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'IBMS_FaultLevel' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10286
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10286]
++++ 差分10327 [10286]
+@@ -27,7 +27,7 @@
+ 2、图标颜色：红色
+ 3、界面显示：
+ （示意），具体以HMI设计为准
+-4、声音信号（Seatbelt提示音（1Hz）），以HMI设计为准，比车辆座舱内背景噪声的声压级至少高 6 分贝
++4、声音信号（Seatbelt提示音（1Hz））比车辆座舱内背景噪声的声压级至少高 6 分贝
+ 功能描述：
+ 1、主驾坐人且未系安全带： ACU_1_DriverSeatBeltWarning=0x1 and ACU_1_DriverSeatOccupiedSts=0x1
+ 2、副驾坐人且未系安全带： ACU_1_PsngrSeatBeltWarning=0x1 and ACU_1_PsngrSeatOccupiedSts=0x1
+@@ -37,65 +37,36 @@
+ 5、后排右侧坐人且未系安全带： ACU_1_SecRowRBeltWarning=0x1 and ACU_1_SecRowRSeatOccupiedSts=0x1
+ 6、指示车速25km/h，即仪表屏车速显示25km/h；
+ 7、满足任意条件（主驾坐人且未系安全带、副驾坐人且未系安全带、后排左侧坐人且未系安全带、后排中间坐人
+-且未系安全带、后排右侧坐人且未系安全带），且指示车速≤25km/h时，图标常亮，安全带界面对应位置显示安全
++且未系安全带、后排右侧坐人且未系安全带），且指示车速＜25km/h时，图标常亮，安全带界面对应位置显示安全
+ 带状态红色常亮；
+ 8、满足任意条件（主驾坐人且未系安全带、副驾坐人且未系安全带、后排左侧坐人且未系安全带、后排中间坐人
+-且未系安全带、后排右侧坐人且未系安全带），且指示车速＞25km/h时，图标闪烁（0.5s on，0.5s off），安全带
+-界面对应位置显示安全带状态红色闪烁（0.5s on，0.5s off），同步触发声音提醒（Seatbelt提示音，提示音与闪烁
+-频率同步），前排报警时长120s，后排报警时长60s，声音报警结束后，图标同步变为常亮，安全带界面对应位置
+-
+-安全带显示红色常亮状态；
++且未系安全带、后排右侧坐人且未系安全带），且指示车速≥25km/h时，图标闪烁（0.5s on，0.5s off），安全带界
++面对应位置显示安全带状态红色闪烁（0.5s on，0.5s off），同步触发声音提醒（Seatbelt提示音，提示音与闪烁频
++率同步），前排报警时长120s，后排报警时长40s，声音报警结束后，图标同步变为常亮，安全带界面对应位置安
++全带显示红色常亮状态；
+ 9、声音触发后，可以被以下条件关闭：
+-a、前排声音报警时长超过120s，后排声音报警时长超过60s ，则声音关闭，图标常亮，安全带界面对应位置显示
++a、前排声音报警时长超过120s，后排声音报警时长超过40s ，则声音关闭，图标常亮，安全带界面对应位置显示
+ 安全带状态红色常亮；
+ b、触发报警的安全带全部系好，声音立即关闭，图标同时熄灭，以及安全带界面对应位置不显示安全带；
+ c、电源模式（即整车条件）不满足要求；
+ 10、声音触发后，可以在以下条件暂停：
+ a、声音报警期间，挂入倒挡（ GearLvrIndcn=0x1），声音报警暂停，车辆恢复非倒挡，满足声音报警条件时重新
+-激活声音报警检测，声音报警时长重新计时，前排120s，后排60s；
++激活声音报警检测，声音报警时长重新计时，前排120s，后排40s；
+ b、声音报警期间，有其他更高优先级报警（声音）被触发，则声音报警被打断，声音报警（含计时）暂停。若打
+ 断时间＜10s，报警符号保持闪烁，打断结束后继续进行声音报警并延续暂停之前的计时。若打断时间≥10s，则报
+ 警符号变为常亮，并在打断结束后重新开始声音报警，符号同步闪烁，且声音报警时长重新计时，前排120s，后排
+-60s ；
+-11、声音报警期间，有新的报警条件触发，则重新激活声音计时，前排120s，后排60s；
++40s ；
++11、声音报警期间，有新的报警条件触发，则重新激活声音计时，前排120s，后排40s；
+ a、激活前排声音报警时，存在另一个前排/后排声音报警，则声音报警按最后一次触发开始计时120s即可；
+ b、激活后排声音报警时，若同时存在前排声音报警，且前排声音报警剩余时间足够覆盖完整的后排声音报警
+-（≥60s）,则不需要额外增加声音报警时长；若前排声音报警剩余时间（t）无法覆盖完整的后排声音报警（＜
+-60s），则只需要延长未覆盖的时长即可（60-t）；
++（≥40s）,则不需要额外增加声音报警时长；若前排声音报警剩余时间（t）无法覆盖完整的后排声音报警（＜
++40s），则只需要延长未覆盖的时长即可（40-t）；
+ 12、同一个报警声音报警计时结束后，无新的报警触发，则不重新激活声音报警；
+ 13、任何阶段，报警状态发生变化（系上变未系或新的未系），须激活安全带报警检测；
+ 14、任何阶段，安全带系上可随时熄灭图标及安全带界面对应安全带状态显示，并结束声音报警；
+-注：后排安全带声音提醒，中控屏上有对应开关，需根据开关状态控制，如为关闭，后排安全带不触发声音提醒，
+-对应的后排安全带未系指示灯不会出现闪烁状态；
++注：后排安全带声音提醒，中控屏上有对应软开关，需根据软开关设置状态控制，如设置为关闭，后排安全带不触
++发声音提醒；
+ 故障及恢复处理：
+ 1、连续＜【Timeout】时间内未收到信号，指示灯保持当前状态不变；
+ 2、判断安全带信号丢失时，认为不满足安全带未系条件，指示灯熄灭；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'ACU_1_DriverSeatBeltWarning' removed.
+-Description Reference 'ACU_1_DriverSeatOccupiedSts' removed.
+-Description Reference 'ACU_1_PsngrSeatBeltWarning' removed.
+-Description Reference 'ACU_1_PsngrSeatOccupiedSts' removed.
+-Description Reference 'ACU_1_SecRowLBeltWarning' removed.
+-Description Reference 'ACU_1_SecRowLSeatOccupiedSts' removed.
+-Description Reference 'ACU_1_SecRowMBeltWarning' removed.
+-Description Reference 'ACU_1_SecRowMSeatOccupiedSts' removed.
+-Description Reference 'ACU_1_SecRowRBeltWarning' removed.
+-Description Reference 'ACU_1_SecRowRSeatOccupiedSts' removed.
+-Description Reference 'GearLvrIndcn' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'ACU_1_DriverSeatBeltWarning' added.
+-Description Reference 'ACU_1_DriverSeatOccupiedSts' added.
+-Description Reference 'ACU_1_PsngrSeatBeltWarning' added.
+-Description Reference 'ACU_1_PsngrSeatOccupiedSts' added.
+-Description Reference 'ACU_1_SecRowLBeltWarning' added.
+-Description Reference 'ACU_1_SecRowLSeatOccupiedSts' added.
+-Description Reference 'ACU_1_SecRowMBeltWarning' added.
+-Description Reference 'ACU_1_SecRowMSeatOccupiedSts' added.
+-Description Reference 'ACU_1_SecRowRBeltWarning' added.
+-Description Reference 'ACU_1_SecRowRSeatOccupiedSts' added.
+-Description Reference 'GearLvrIndcn' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10290
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10290]
++++ 差分10327 [10290]
+@@ -3,54 +3,11 @@
+ /
+ 整车条件：
+ 指示需同时满足以下两个条件：
+-1、 UsgModSts=0x4 Driving or 0x5 Parking
++1、 UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking
+ 2、 CarModSts=0x0-0x7
+ 输入信号：
+ SignalName
+ GearLvrIndcn
+-CCU内部信号，如下表定义
+-信号名 接口功能说明 接口值含义 通讯类型 ECU
+-（TX）
+-ECU
+-（RX）
+-OMSDriverSeatBeltS
+-ts（内部接口，具体
+-信号名TBD）
+-OMS前排驾驶
+-员安全带状态
+-0x0：None
+-0x1：UnBuckled
+-0x2：
+-BuckledButNoPr
+-operly
+-0x3：
+-BuckledProperly
+-0x4：Unknown
+-0x5：Reserved
+-0x6：Reserved
+-0x7：Invalid
+-CCU内部接
+-口
+-CCU
+-OMSPsngrSeatBeltS
+-ts（内部接口，具体
+-信号名TBD）
+-OMS前排乘员
+-安全带状态
+-0x0：None
+-0x1：UnBuckled
+-0x2：
+-BuckledButNoPr
+-operly
+-0x3：
+-BuckledProperly
+-0x4：Unknown
+-0x5：Reserved
+-0x6：Reserved
+-0x7：Invalid
+-CCU内部接
+-口
+-CCU
+ 输出信号：
+ SignalName
+ /
+@@ -61,13 +18,11 @@
+ 3、声音：同Seatbelt提示音（1Hz）
+ 功能描述：
+ 1、安全带未正确佩戴（包含仅安全带插头插入锁扣、安全带系在乘员后侧、肩带在后侧，腰带正确佩戴等），状
+-态无需区分判断，统一定义为安全带未正确佩戴，视觉算法状态：
+-内部信号OMSDriverSeatBeltSts=0x2 or OMSPsngrSeatBeltSts=0x2时，判断为安全带未正确佩戴
+-
++态无需区分判断，统一定义为安全带未正确佩戴，内部视觉算法状态；
+ 2、指示车速25km/h，即是仪表屏车速显示25km/h；
+-3、主驾/副驾任意安全带未正确佩戴，且指示车速≤25km/h时，图标常亮；
+-4、主驾/副驾任意安全带未正确佩戴，且指示车速＞25km/h时，图标闪烁（0.5s on，0.5s off），同步触发声音提
+-醒（Seatbelt提示音），报警时长120s，120s后声音报警结束，图标同步变为常亮；
++3、主驾/副驾任意安全带未正确佩戴，且指示车速＜25km/h时，图标常亮；
++4、主驾/副驾任意安全带未正确佩戴，且指示车速≥25km/h时，图标闪烁（0.5s on，0.5s off），同步触发声音提醒
++（Seatbelt提示音），报警时长120s，120s后声音报警结束，图标同步变为常亮；
+ 5、声音触发后，可以被以下条件关闭：
+ a、声音报警时长超过120s，则声音关闭，图标常亮；
+ b、触发报警的安全带全部正确佩戴好，声音立即关闭，图标同时熄灭；
+@@ -82,15 +37,4 @@
+ 8、同一个报警声音报警计时结束后，无新的报警触发，则不重新激活声音报警；
+ 9、任何阶段，报警状态发生变化（正确佩戴变未正确佩戴或新的未正确佩戴），须激活安全带未正确佩戴检测；
+ 10、任何阶段，安全带正确佩戴可随时熄灭图标，并结束声音报警；
+-注：
+-1、安全带声音报警优先级：安全带未系＞安全带未正确佩戴；
+-2、安全带误用声音提醒，如中控屏上有对应开关，需根据开关状态控制，当为关闭时，安全带误用不触发声音提
+-醒，对应的安全带误用指示灯不会出现闪烁状态；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'GearLvrIndcn' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'GearLvrIndcn' added.
++注：安全带声音报警优先级：安全带未系＞安全带未正确佩戴；
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10292
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10292]
++++ 差分10327 [10292]
+@@ -2,7 +2,6 @@
+ 配置字：
+ /
+ 整车条件：
+-
+ 指示需同时满足以下两个条件：
+ 1、 UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking
+ 2、 CarModSts=0x0-0x7
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10294
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10294]
++++ 差分10327 [10294]
+@@ -1,7 +1,6 @@
+ 需求描述:
+ 配置字：
+ /
+-
+ 整车条件：
+ 指示需同时满足以下两个条件：
+ 1、 UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10300
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10300]
++++ 差分10327 [10300]
+@@ -9,7 +9,6 @@
+ SignalName
+ CDU2_ChrgCnntSts
+ DCChrgnHndlStsE2EDCChrgnHndlStsE2E
+-
+ 输出信号：
+ SignalName
+ /
+@@ -34,12 +33,3 @@
+ 2、判断信号【 CDU2_ChrgCnntSts， DCChrgnHndlStsE2EDCChrgnHndlStsE2E】任一丢失，以另一信号判断显
+ 示，如判断信号【 CDU2_ChrgCnntSts， DCChrgnHndlStsE2EDCChrgnHndlStsE2E】都丢失，指示灯熄灭；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'CDU2_ChrgCnntSts' removed.
+-Description Reference 'DCChrgnHndlStsE2EDCChrgnHndlStsE2E' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'CDU2_ChrgCnntSts' added.
+-Description Reference 'DCChrgnHndlStsE2EDCChrgnHndlStsE2E' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10303
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10303]
++++ 差分10327 [10303]
+@@ -1,20 +1,18 @@
+ 需求描述:
+ 配置字：
+-驱动动力形式BAE
+-驱动方式BBZ
+-
++纯电/增程、两驱/四驱
+ 整车条件：
+ 指示需同时满足以下两个条件：
+ 1、 UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking
+ 2、 CarModSts=0x0-0x7
+ 输入信号：
+ SignalName
+-RmcuGenericInvrtTAlrmSt_ToCloud
+-RmcuGenericMotTAlrmSt_ToCloud
+-FmcuGenericInvrtTAlrmSt_ToCloud
+-FmcuGenericMotTAlrmSt_ToCloud
+-GcuGenericInvrtTAlrmSt_ToCloud
+-GcuGenericMotTAlrmSt_ToCloud
++RMCUGeneric_SigGrp- RmcuGenericInvrtTAlrmSt
++RMCUGeneric_SigGrp- RmcuGenericMotTAlrmSt
++FmcuGeneric_SigGrp- FmcuGenericInvrtTAlrmSt
++FmcuGeneric_SigGrp- FmcuGenericMotTAlrmSt
++GcuGeneric_SigGrp- GcuGenericInvrtTAlrmSt
++GcuGeneric_SigGrp- GcuGenericMotTAlrmSt
+ 输出信号：
+ SignalName
+ /
+@@ -23,57 +21,24 @@
+ （建议），具体以HMI设计为准
+ 2、图标颜色：红色
+ 功能描述：
+-1、纯电/增程：驱动动力形式BAE01（纯电动）无需判断GCU信号；驱动动力形式BAE02（增程式混动）程需判断
+-GCU信号；
+-2、后驱/四驱：驱动方式BBZ01（单电机后驱）仅判断RMCU信号；驱动方式BBZ02（双电机四驱，前置+后置）判
+-断RMCU和FMCU信号；
++纯电/增程：纯电无需判断GCU信号，增程需判断GCU信号
++两驱/四驱：两驱（后驱）仅判断RMCU信号，四驱判断RMCU和FMCU信号
+ 指示 逻辑
+ on
+ 满足以下任意条件：
+-1、 RmcuGenericInvrtTAlrmSt_ToCloud=0x2
+-2、 RmcuGenericMotTAlrmSt_ToCloud=0x2
+-3、 FmcuGenericInvrtTAlrmSt_ToCloud=0x2
+-4、 FmcuGenericMotTAlrmSt_ToCloud=0x2
+-5、 GcuGenericInvrtTAlrmSt_ToCloud=0x2
+-6、 GcuGenericMotTAlrmSt_ToCloud=0x2
++1、 RMCUGeneric_SigGrp- RmcuGenericInvrtTAlrmSt=0x1 or 0x2
++2、 RMCUGeneric_SigGrp- RmcuGenericMotTAlrmSt=0x1 or 0x2
++3、 FmcuGeneric_SigGrp- FmcuGenericInvrtTAlrmSt=0x1 or 0x2
++4、 FmcuGeneric_SigGrp- FmcuGenericMotTAlrmSt=0x1 or 0x2
++5、 GcuGeneric_SigGrp- GcuGenericInvrtTAlrmSt=0x1 or 0x2
++6、 GcuGeneric_SigGrp- GcuGenericMotTAlrmSt=0x1 or 0x2
+ off
+ 不满足上述条件
+ 故障及恢复处理：
+ 1、连续＜【Timeout】时间内未收到信号，指示灯保持当前状态不变；
+-2、判断【 RmcuGenericInvrtTAlrmSt_ToCloud， RmcuGenericMotTAlrmSt_ToCloud，
+-FmcuGenericInvrtTAlrmSt_ToCloud， FmcuGenericMotTAlrmSt_ToCloud， GcuGenericInvrtTAlrmSt_ToCloud，
+-GcuGenericMotTAlrmSt_ToCloud】任意信号丢失（纯电/增程：驱动动力形式BAE01（纯电动）无需判断GCU信
+-号；驱动动力形式BAE02（增程式混动）程需判断GCU信号；后驱/四驱：驱动方式BBZ01（单电机后驱）仅判断
+-RMCU信号；驱动方式BBZ02（双电机四驱，前置+后置）判断RMCU和FMCU信号），指示灯常亮；
++2、判断【 RMCUGeneric_SigGrp- RmcuGenericInvrtTAlrmSt， RMCUGeneric_SigGrp- RmcuGenericMotTAlrmSt，
++FmcuGeneric_SigGrp- FmcuGenericInvrtTAlrmSt， FmcuGeneric_SigGrp- FmcuGenericMotTAlrmSt，
++GcuGeneric_SigGrp- GcuGenericInvrtTAlrmSt， GcuGeneric_SigGrp- GcuGenericMotTAlrmSt】任意信号丢失（纯
++电/增程：纯电无需判断GCU信号，增程需判断GCU信号；两驱/四驱：两驱（后驱）仅判断RMCU信号，四驱判断
++RMCU和FMCU信号），指示灯常亮；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'RmcuGenericInvrtTAlrmSt' removed.
+-Description Reference 'RmcuGenericMotTAlrmSt' removed.
+-Description Reference 'FmcuGenericInvrtTAlrmSt' removed.
+-Description Reference 'FmcuGenericMotTAlrmSt' removed.
+-Description Reference 'GcuGenericInvrtTAlrmSt' removed.
+-Description Reference 'GcuGenericMotTAlrmSt' removed.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'RMCUGeneric_SigGrp' removed.
+-
+-Description Reference 'FmcuGeneric_SigGrp' removed.
+-Description Reference 'GcuGeneric_SigGrp' removed.
+-Signal dependency 'RMCUGeneric_SigGrp' removed.
+-Signal dependency 'FmcuGeneric_SigGrp' removed.
+-Signal dependency 'GcuGeneric_SigGrp' removed.
+-Signal dependency 'RmcuGenericInvrtTAlrmSt_ToCloud' added.
+-Signal dependency 'RmcuGenericMotTAlrmSt_ToCloud' added.
+-Signal dependency 'FmcuGenericInvrtTAlrmSt_ToCloud' added.
+-Signal dependency 'FmcuGenericMotTAlrmSt_ToCloud' added.
+-Signal dependency 'GcuGenericInvrtTAlrmSt_ToCloud' added.
+-Signal dependency 'GcuGenericMotTAlrmSt_ToCloud' added.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'RmcuGenericInvrtTAlrmSt_ToCloud' added.
+-Description Reference 'RmcuGenericMotTAlrmSt_ToCloud' added.
+-Description Reference 'FmcuGenericInvrtTAlrmSt_ToCloud' added.
+-Description Reference 'FmcuGenericMotTAlrmSt_ToCloud' added.
+-Description Reference 'GcuGenericInvrtTAlrmSt_ToCloud' added.
+-Description Reference 'GcuGenericMotTAlrmSt_ToCloud' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10305
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10305]
++++ 差分10327 [10305]
+@@ -1,16 +1,15 @@
+ 需求描述:
+ 配置字：
+-驱动动力形式BAE
+-驱动方式BBZ
++纯电/增程、两驱/四驱
+ 整车条件：
+ 指示需同时满足以下两个条件：
+ 1、 UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking
+ 2、 CarModSts=0x0-0x7
+ 输入信号：
+ SignalName
+-RmcuGenericFltAlrmSt_ToCloud
+-FmcuGenericFltAlrmSt_ToCloud
+-GcuGenericFltAlrmSt_ToCloud
++RMCUGeneric_SigGrp- RmcuGenericFltAlrmSt
++FmcuGeneric_SigGrp- FmcuGenericFltAlrmSt
++GcuGeneric_SigGrp- GcuGenericFltAlrmSt
+ 输出信号：
+ SignalName
+ /
+@@ -19,44 +18,19 @@
+ （建议），具体以HMI设计为准
+ 2、图标颜色：红色
+ 功能描述：
+-1、纯电/增程：驱动动力形式BAE01（纯电动）无需判断GCU信号；驱动动力形式BAE02（增程式混动）程需判断
+-GCU信号；
+-2、后驱/四驱：驱动方式BBZ01（单电机后驱）仅判断RMCU信号；驱动方式BBZ02（双电机四驱，前置+后置）判
+-断RMCU和FMCU信号；
+-
++纯电/增程：纯电无需判断GCU信号，增程需判断GCU信号
++两驱/四驱：两驱（后驱）仅判断RMCU信号，四驱判断RMCU和FMCU信号
+ 指示 逻辑
+ on
+ 满足以下任意条件：
+-1、 RmcuGenericFltAlrmSt_ToCloud=0x2 or 0x3
+-2、 FmcuGenericFltAlrmSt_ToCloud=0x2 or 0x3
+-3、 GcuGenericFltAlrmSt_ToCloud=0x2 or 0x3
++1、 RMCUGeneric_SigGrp- RmcuGenericFltAlrmSt=0x1 or 0x2
++2、 FmcuGeneric_SigGrp- FmcuGenericFltAlrmSt=0x1 or 0x2
++3、 GcuGeneric_SigGrp- GcuGenericFltAlrmSt=0x1 or 0x2
+ off
+ 不满足上述条件
+ 故障及恢复处理：
+ 1、连续＜【Timeout】时间内未收到信号，指示灯保持当前状态不变；
+-2、判断【 RmcuGenericFltAlrmSt_ToCloud, FmcuGenericFltAlrmSt_ToCloud， GcuGenericFltAlrmSt_ToCloud】任
+-意信号丢失（纯电/增程：驱动动力形式BAE01（纯电动）无需判断GCU信号；驱动动力形式BAE02（增程式混
+-动）程需判断GCU信号；后驱/四驱：驱动方式BBZ01（单电机后驱）仅判断RMCU信号；驱动方式BBZ02（双电
+-机四驱，前置+后置）判断RMCU和FMCU信号），指示灯常亮；
++2、判断【 RMCUGeneric_SigGrp- RmcuGenericFltAlrmSt， FmcuGeneric_SigGrp- FmcuGenericFltAlrmSt，
++GcuGeneric_SigGrp- GcuGenericFltAlrmSt】任意信号丢失（纯电/增程：纯电无需判断GCU信号，增程需判断GCU
++信号；两驱/四驱：两驱（后驱）仅判断RMCU信号，四驱判断RMCU和FMCU信号），指示灯常亮；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'RmcuGenericFltAlrmSt' removed.
+-Description Reference 'FmcuGenericFltAlrmSt' removed.
+-Description Reference 'GcuGenericFltAlrmSt' removed.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'RMCUGeneric_SigGrp' removed.
+-Description Reference 'FmcuGeneric_SigGrp' removed.
+-Description Reference 'GcuGeneric_SigGrp' removed.
+-Signal dependency 'RMCUGeneric_SigGrp' removed.
+-Signal dependency 'FmcuGeneric_SigGrp' removed.
+-Signal dependency 'GcuGeneric_SigGrp' removed.
+-Signal dependency 'RmcuGenericFltAlrmSt_ToCloud' added.
+-Signal dependency 'FmcuGenericFltAlrmSt_ToCloud' added.
+-Signal dependency 'GcuGenericFltAlrmSt_ToCloud' added.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'RmcuGenericFltAlrmSt_ToCloud' added.
+-Description Reference 'FmcuGenericFltAlrmSt_ToCloud' added.
+-Description Reference 'GcuGenericFltAlrmSt_ToCloud' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10307
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10307]
++++ 差分10327 [10307]
+@@ -22,7 +22,6 @@
+ off
+ 不满足上述条件
+ 故障及恢复处理：
+-
+ 1、连续＜【Timeout】时间内未收到【 HybErrIndcnReqTelltlSysHybFailr】信号，指示灯保持当前状态不变；
+ 2、判断【 HybErrIndcnReqTelltlSysHybFailr】信号丢失，指示灯常亮；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10308
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10308]
++++ 差分10327 [10308]
+@@ -6,7 +6,6 @@
+ 1、 UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking
+ 2、 CarModSts=0x0-0x7
+ 输入信号：
+-
+ SignalName
+ HvSysFltSts_SigGrp- BMS_Insulation_Low_Chg
+ HvSysFltSts_SigGrp- BMS_Insulation_Low_Dis
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10309
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10309]
++++ 差分10327 [10309]
+@@ -22,7 +22,6 @@
+ off
+ 不满足上述条件
+ 故障及恢复处理：
+-
+ 1、连续＜【Timeout】时间内未收到【 HvSysActvnInhb】信号，指示灯保持当前状态不变；
+ 2、判断【 HvSysActvnInhb】信号丢失，指示灯常亮；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10310
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10310]
++++ 差分10327 [10310]
+@@ -3,7 +3,7 @@
+ /
+ 整车条件：
+ 指示需同时满足以下两个条件：
+-1、 UsgModSts=0x1 Standby or 0x2 Convenience or 0x4 Driving or 0x5 Parking
++1、 UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking
+ 2、 CarModSts=0x0-0x7
+ 输入信号：
+ SignalName
+@@ -22,15 +22,6 @@
+ off
+ 不满足上述条件
+ 故障及恢复处理：
+-
+ 1、连续＜【Timeout】时间内未收到【 Therunawy】信号，指示灯保持当前状态不变；
+ 2、判断【 Therunawy】信号丢失，指示灯保持当前状态不变；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'Therunawy' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'Therunawy' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10313
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10313]
++++ 差分10327 [10313]
+@@ -12,67 +12,47 @@
+ CDU3_AC_InputOutputVolt
+ CDU3_AC_Power
+ HvBattChrgnTiEstimd
++DCChrgSt
+ HvBattUDc
+ HvBattIDc
+-ChrgnOrDisChrgnStsFb
+-DispHvBattLvlOfChrg
+ 输出信号：
+ SignalName
+ /
+ 显示/声音要求：
+-1、慢充AC
+-充/放电线连接指示灯已点亮：
+-a、慢充AC充电中（ ChrgnOrDisChrgnStsFb=0x2）时，显示充电界面，支持充电电压、充电电流、充电功率、充
+-电剩余时间显示；
+-b、慢充AC充电预热中（ ChrgnOrDisChrgnStsFb=0x5）时，显示充电界面，仅显示充电预热中；
+-2、快充DC：
+-充/放电线连接指示灯已点亮：
+-a、快充DC充电中（ ChrgnOrDisChrgnStsFb=0xF）时，显示充电界面，支持充电电压、充电电流、充电剩余时间
+-显示；
+-b、快充DC充电预热中（ ChrgnOrDisChrgnStsFb=0x4）时，显示充电界面，仅显示充电预热中；
+-3、充/放电线连接指示灯已点亮，放电状态（ CDU1_Chrg_DischrgWorkSts=0x7）时，显示放电界面，支持放电电
+-压、放电电流、放电功率显示；
+-4、充电状态 ChrgnOrDisChrgnStsFb：
+-0x2:ACCharging AC充电中
+-0x3:ChargEnd 充电结束
+-0x4:DC_Heating DC充电预热中
+-0x5:AC_Heating AC充电预热中
+-0xB:Chargfalut 充电故障
+-0xF:DCCharging DC充电中
+-5、充电电压：
++1、充/放电线连接指示灯已点亮，慢充充电时，显示充电界面，支持充电电压、充电电流、充电功率、充电剩余时
++间显示；
++2、充/放电线连接指示灯已点亮，快充充电时，显示充电界面，支持充电电压、充电电流、充电剩余时间显示；
++3、充/放电线连接指示灯已点亮，放电状态时，显示放电界面，支持放电电压、放电电流、放电功率显示；
++4、充电电压：
+ a、慢充 CDU3_AC_InputOutputVolt：
+ 显示范围：0~300V，超过最大值按照最大值显示
+ 显示精度：1V
+ b、快充 HvBattUDc：
+ 根据信号范围，显示为XXV
+ 显示精度：1V，根据接收信号计算后取整处理
+-6、充电电流：
++5、充电电流：
+ a、慢充 CDU3_AC_InputOutputCurrent
+ 显示范围：0~51A，超过最大值按照最大值显示
+ 显示精度：0.1A
+-
+ b、快充 HvBattIDc：
+ 根据信号范围，显示为XX.XA
+ 显示精度：0.1A，根据接收信号计算后取整处理
+-7、充电功率：
++6、充电功率：
+ a、慢充 CDU3_AC_Power:
+ 显示范围：0~10.0kW，超过最大值按照最大值显示
+ 显示精度：0.1kW
+-8、充电剩余时间： HvBattChrgnTiEstimd：
++7、充电剩余时间： HvBattChrgnTiEstimd：
+ a、根据信号范围，显示为XXhXXmin
+-如充电时间＞24h时，提示相关文言（剩余时间超过24h，具体以HMI定义为准）；
+-如SOC（ DispHvBattLvlOfChrg）≥98%，且充电时间≤24h，提示相关文言（电池即将充满，具体以HMI定义为
+-准）；
+ b、显示精度：1min；
+-9、放电电压：
++8、放电电压：
+ a、慢充 CDU3_AC_InputOutputVolt：
+ 显示范围：0~300V，超过最大值按照最大值显示
+ 显示精度：1V
+-10、放电电流：
++9、放电电流：
+ a、慢充 CDU3_AC_InputOutputCurrent
+ 显示范围：0~51A，超过最大值按照最大值显示
+ 显示精度：1A
+-11、放电功率：
++10、放电功率：
+ a、慢充 CDU3_AC_Power:
+ 显示范围：0~10.0kW，超过最大值按照最大值显示
+ 显示精度：0.1kW
+@@ -81,62 +61,26 @@
+ 点亮状态，参见ChargingCableConnection充放电线连接指示灯定义；
+ 2、充电状态判断：
+ a、充放电线连接指示灯
+-点亮状态， ChrgnOrDisChrgnStsFb=0x2，为慢充状态，显示充电界面，根据接收的
+-CDU3_AC_InputOutputCurrent充电电流、 CDU3_AC_InputOutputVolt充电电压、 CDU3_AC_Power充电功率、
+-HvBattChrgnTiEstimd充电剩余时间来显示； ChrgnOrDisChrgnStsFb由0x2变化为0x3时，充电界面显示“充电完
+-成”如5s后结束充电界面显示；
++点亮状态， CDU1_Chrg_DischrgWorkSts=0x2，为慢充状态，显示充电界面，根据接
++收的 CDU3_AC_InputOutputCurrent充电电流、 CDU3_AC_InputOutputVolt充电电压、 CDU3_AC_Power充电功
++率、 HvBattChrgnTiEstimd充电剩余时间来显示；由 CDU1_Chrg_DischrgWorkSts=0x2（充电中）变化为0x3（充电
++完成）时，充电界面显示“充电完成”如5s后结束充电界面显示；
+ b、充放电线连接指示灯
+-点亮状态， ChrgnOrDisChrgnStsFb=0xF，为快充状态，显示充电界面，根据接收的
+-HvBattUDc充电电压、 HvBattIDc充电电流、 HvBattChrgnTiEstimd充电剩余时间来显示； ChrgnOrDisChrgnStsFb由
+-0xF变化为0x3时，充电界面显示“充电完成”如5s后结束充电界面显示；
+-c、充放电线连接指示灯
+-点亮状态， ChrgnOrDisChrgnStsFb=0x4/0x5，为充电预热状态，显示充电界面（充电
+-预热中）；
+-d、充放电线连接指示灯
+-点亮状态， ChrgnOrDisChrgnStsFb=0xB，为充电故障状态，显示充电界面（充电故
+-障）；
++点亮状态，【 DCChrgSt=0x2 or 0xC】 and 【 CDU1_Chrg_DischrgWorkSts≠0x2 and
++0x7】，为快充/超充状态，显示充电界面，根据接收的 HvBattUDc充电电压、 HvBattIDc充电电流、
++HvBattChrgnTiEstimd充电剩余时间来显示；快充/超充充电完成状态信号TBD
+ 3、放电状态判断：
+ a、充放电线连接指示灯
+-点亮状态，同时满足：
+-CDU1_Chrg_DischrgWorkSts=0x7 and ChrgnOrDisChrgnStsFb≠0x2/0xF/0x4/0x5；
+-b、放电状态时显示放电界面，根据接收的 CDU3_AC_InputOutputCurrent放电电流、 CDU3_AC_InputOutputVolt放
+-电电压、 CDU3_AC_Power放电功率来显示；放电状态 CDU1_Chrg_DischrgWorkSts由0x7变化为0x8时，放电界面
+-显示“放电完成”如5s后结束放电界面显示；
++点亮状态， CDU1_Chrg_DischrgWorkSts=0x7，为放电状态，显示放电界面，根据接
++收的 CDU3_AC_InputOutputCurrent放电电流、 CDU3_AC_InputOutputVolt放电电压、 CDU3_AC_Power放电功率
++来显示；
+ 故障及恢复处理：
+ 1、连续＜【Timeout】时间内未收到信号，显示保持当前状态不变；
+-2、判断【 CDU1_Chrg_DischrgWorkSts】信号丢失，按照【≠0x7】状态处理；
+-3、判断【 ChrgnOrDisChrgnStsFb】信号丢失，按照【≠0x2/0xF/0x4/0x5/0x3】状态处理；
++2、判断【 CDU1_Chrg_DischrgWorkSts】信号丢失，按照【≠0x2 and 0x7】状态处理；
++3、判断【 DCChrgSt】信号丢失，按照【≠0x2 and 0xC】状态处理；
+ 4、判断【 CDU3_AC_InputOutputVolt】信号丢失，如需显示时，按照“- -V”显示；
+ 5、判断【 HvBattUDc】信号丢失，如需显示时，按照“- -V”显示；
+-
+-6、判断【 CDU3_AC_InputOutputCurrent】信号丢失，如需显示时，按照“- -A”显示；
++6、判断【 CDU3_AC_InputOutputCurrent】信号丢失，如需显示时，按照“- - . -A”显示；
+ 7、判断【 HvBattIDc】信号丢失，如需显示时，按照“- - . -A”显示；
+ 8、判断【 CDU3_AC_Power】信号丢失，如需显示时，按照“- . -kW”显示；
+ 9、判断【 HvBattChrgnTiEstimd】信号丢失，如需显示时，按照“- -h- - min”显示；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'DCChrgSt' removed.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'CDU1_Chrg_DischrgWorkSts' removed.
+-Description Reference 'CDU3_AC_InputOutputCurrent' removed.
+-Description Reference 'CDU3_AC_InputOutputVolt' removed.
+-Description Reference 'CDU3_AC_Power' removed.
+-Description Reference 'HvBattChrgnTiEstimd' removed.
+-Description Reference 'DCChrgSt' removed.
+-Description Reference 'HvBattUDc' removed.
+-Description Reference 'HvBattIDc' removed.
+-Signal dependency 'DCChrgSt' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'CDU1_Chrg_DischrgWorkSts' added.
+-Description Reference 'CDU3_AC_InputOutputCurrent' added.
+-Description Reference 'CDU3_AC_InputOutputVolt' added.
+-Description Reference 'CDU3_AC_Power' added.
+-Description Reference 'HvBattChrgnTiEstimd' added.
+-Description Reference 'HvBattUDc' added.
+-Description Reference 'HvBattIDc' added.
+-Description Reference 'ChrgnOrDisChrgnStsFb' added.
+-Description Reference 'DispHvBattLvlOfChrg' added.
+-Signal dependency 'ChrgnOrDisChrgnStsFb' added.
+-Signal dependency 'DispHvBattLvlOfChrg' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10319
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10319]
++++ 差分10327 [10319]
+@@ -11,7 +11,6 @@
+ 输出信号：
+ SignalName
+ /
+-
+ 显示/声音要求：
+ 1、制动液位低，弹窗提示5s，具体以HMI设计为准
+ 2、声音提醒，1Hz通用提示音，报警时长1声
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10320
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10320]
++++ 差分10327 [10320]
+@@ -14,7 +14,6 @@
+ 显示/声音要求：
+ 1、制动液位传感器故障，弹窗提示5s，具体以HMI设计为准
+ 2、声音提醒，1Hz通用提示音，报警时长1声
+-
+ 功能描述：
+ 指示 逻辑
+ 制动液位传感器故障文言+声音提醒 BrakeFluidWarning=0x2
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10321
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10321]
++++ 差分10327 [10321]
+@@ -11,7 +11,6 @@
+ 输出信号：
+ SignalName
+ /
+-
+ 显示/声音要求：
+ 1、电子制动力分配故障，弹窗提示5s，具体以HMI设计为准
+ 2、声音提醒，1Hz通用提示音，报警时长1声
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10324
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10324]
++++ 差分10327 [10324]
+@@ -12,21 +12,13 @@
+ SignalName
+ /
+ 显示/声音要求：
+-1、驻车力不足，请安全停车，弹窗提示5s，具体以HMI设计为准
+-2、声音提醒，1Hz通用提示音，报警时长1声
++1、驻车坡度过大，请安全停车，弹窗提示5s，具体以HMI设计为准
++2、声音提醒，1Hz通用提示音，报警时长3声
+ 功能描述：
+ 指示 逻辑
+-驻车力不足，请安全停车，文言+声音提醒 EpbTxtDisp=0x1
+-无 驻车力不足，请安全停车，文言+声音提醒 不满足上述条件
++驻车坡度过大，请安全停车，文言+声音提醒 EpbTxtDisp=0x1
++无 驻车坡度过大，请安全停车，文言+声音提醒 不满足上述条件
+ 故障及恢复处理：
+ 1、连续＜【Timeout】时间内未收到任意【 EpbTxtDisp】信号，保持当前状态不变；
+ 2、判断【 EpbTxtDisp】任意信号丢失，结束提醒；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'EpbTxtDisp' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'EpbTxtDisp' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10325
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10325]
++++ 差分10327 [10325]
+@@ -1,74 +1,41 @@
+ 需求描述:
+ 配置字：
+-驱动动力形式BAE
+-驱动方式BBZ
++纯电/增程、两驱/四驱
+ 整车条件：
+ 指示需同时满足以下两个条件：
+ 1、 UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking
+ 2、 CarModSts=0x0-0x7
+ 输入信号：
+ SignalName
+-FmcuGenericInvrtTAlrmSt_ToCloud
+-FmcuGenericMotTAlrmSt_ToCloud
+-GcuGenericInvrtTAlrmSt_ToCloud
+-GcuGenericMotTAlrmSt_ToCloud
+-RmcuGenericInvrtTAlrmSt_ToCloud
+-RmcuGenericMotTAlrmSt_ToCloud
++RMCUGeneric_SigGrp- RmcuGenericInvrtTAlrmSt
++RMCUGeneric_SigGrp- RmcuGenericMotTAlrmSt
++FmcuGeneric_SigGrp- FmcuGenericInvrtTAlrmSt
++FmcuGeneric_SigGrp- FmcuGenericMotTAlrmSt
++GcuGeneric_SigGrp- GcuGenericInvrtTAlrmSt
++GcuGeneric_SigGrp- GcuGenericMotTAlrmSt
+ 输出信号：
+-
+ SignalName
+ /
+ 显示/声音要求：
+-驱动电机过热，弹窗提示5s，具体以HMI设计为准
++1、驱动电机过热，弹窗提示5s，具体以HMI设计为准
++2、声音提醒，1Hz通用提示音，报警时长3声
+ 功能描述：
+-1、纯电/增程：驱动动力形式BAE01（纯电动）无需判断GCU信号；驱动动力形式BAE02（增程式混动）程需判断
+-GCU信号；
+-2、后驱/四驱：驱动方式BBZ01（单电机后驱）仅判断RMCU信号；驱动方式BBZ02（双电机四驱，前置+后置）判
+-断RMCU和FMCU信号；
++纯电/增程：纯电无需判断GCU信号，增程需判断GCU信号
++两驱/四驱：两驱（后驱）仅判断RMCU信号，四驱判断RMCU和FMCU信号
+ 指示 逻辑
+-驱动电机过热，文言提示 满足以下任意条件：
+-1、 FmcuGenericInvrtTAlrmSt_ToCloud=0x1 or 0x2
+-2、 FmcuGenericMotTAlrmSt_ToCloud=0x1 or 0x2
+-3、 GcuGenericInvrtTAlrmSt_ToCloud=0x1 or 0x2
+-4、 GcuGenericMotTAlrmSt_ToCloud=0x1 or 0x2
+-5、 RmcuGenericInvrtTAlrmSt_ToCloud=0x1 or 0x2
+-6、 RmcuGenericMotTAlrmSt_ToCloud=0x1 or 0x2
+-无 驱动电机过热，文言提示 不满足上述条件
++驱动电机过热，文言+声音提醒 满足以下任意条件：
++1、 RMCUGeneric_SigGrp- RmcuGenericInvrtTAlrmSt=0x1 or 0x2
++2、 RMCUGeneric_SigGrp- RmcuGenericMotTAlrmSt=0x1 or 0x2
++3、 FmcuGeneric_SigGrp- FmcuGenericInvrtTAlrmSt=0x1 or 0x2
++4、 FmcuGeneric_SigGrp- FmcuGenericMotTAlrmSt=0x1 or 0x2
++5、 GcuGeneric_SigGrp- GcuGenericInvrtTAlrmSt=0x1 or 0x2
++6、 GcuGeneric_SigGrp- GcuGenericMotTAlrmSt=0x1 or 0x2
++无 驱动电机过热，文言+声音提醒 不满足上述条件
+ 故障及恢复处理：
+ 1、连续＜【Timeout】时间内未收到信号，保持当前状态不变；
+-2、判断【 FmcuGenericInvrtTAlrmSt_ToCloud， FmcuGenericMotTAlrmSt_ToCloud，
+-GcuGenericInvrtTAlrmSt_ToCloud， GcuGenericMotTAlrmSt_ToCloud， RmcuGenericInvrtTAlrmSt_ToCloud，
+-RmcuGenericMotTAlrmSt_ToCloud】任意信号丢失（纯电/增程：驱动动力形式BAE01（纯电动）无需判断GCU信
+-号；驱动动力形式BAE02（增程式混动）程需判断GCU信号；后驱/四驱：驱动方式BBZ01（单电机后驱）仅判断
+-RMCU信号；驱动方式BBZ02（双电机四驱，前置+后置）判断RMCU和FMCU信号），结束提醒；
++2、判断【 RMCUGeneric_SigGrp- RmcuGenericInvrtTAlrmSt， RMCUGeneric_SigGrp- RmcuGenericMotTAlrmSt，
++FmcuGeneric_SigGrp- FmcuGenericInvrtTAlrmSt， FmcuGeneric_SigGrp- FmcuGenericMotTAlrmSt，
++GcuGeneric_SigGrp- GcuGenericInvrtTAlrmSt， GcuGeneric_SigGrp- GcuGenericMotTAlrmSt】任意信号丢失（纯
++电/增程：纯电无需判断GCU信号，增程需判断GCU信号；两驱/四驱：两驱（后驱）仅判断RMCU信号，四驱判断
++RMCU和FMCU信号），结束提醒；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'RmcuGenericInvrtTAlrmSt' removed.
+-Description Reference 'RmcuGenericMotTAlrmSt' removed.
+-Description Reference 'FmcuGenericInvrtTAlrmSt' removed.
+-Description Reference 'FmcuGenericMotTAlrmSt' removed.
+-Description Reference 'GcuGenericInvrtTAlrmSt' removed.
+-Description Reference 'GcuGenericMotTAlrmSt' removed.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'RMCUGeneric_SigGrp' removed.
+-Description Reference 'FmcuGeneric_SigGrp' removed.
+-Description Reference 'GcuGeneric_SigGrp' removed.
+-Signal dependency 'RMCUGeneric_SigGrp' removed.
+-Signal dependency 'FmcuGeneric_SigGrp' removed.
+-Signal dependency 'GcuGeneric_SigGrp' removed.
+-Signal dependency 'RmcuGenericInvrtTAlrmSt_ToCloud' added.
+-Signal dependency 'RmcuGenericMotTAlrmSt_ToCloud' added.
+-Signal dependency 'FmcuGenericInvrtTAlrmSt_ToCloud' added.
+-Signal dependency 'FmcuGenericMotTAlrmSt_ToCloud' added.
+-Signal dependency 'GcuGenericInvrtTAlrmSt_ToCloud' added.
+-Signal dependency 'GcuGenericMotTAlrmSt_ToCloud' added.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'FmcuGenericInvrtTAlrmSt_ToCloud' added.
+-Description Reference 'FmcuGenericMotTAlrmSt_ToCloud' added.
+-Description Reference 'GcuGenericInvrtTAlrmSt_ToCloud' added.
+-Description Reference 'GcuGenericMotTAlrmSt_ToCloud' added.
+-Description Reference 'RmcuGenericInvrtTAlrmSt_ToCloud' added.
+-Description Reference 'RmcuGenericMotTAlrmSt_ToCloud' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10326
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10326]
++++ 差分10327 [10326]
+@@ -1,58 +1,33 @@
+ 需求描述:
+ 配置字：
+-驱动动力形式BAE
+-驱动方式BBZ
++纯电/增程、两驱/四驱
+ 整车条件：
+ 指示需同时满足以下两个条件：
+ 1、 UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking
+ 2、 CarModSts=0x0-0x7
+ 输入信号：
+ SignalName
+-FmcuGenericFltAlrmSt_ToCloud
+-GcuGenericFltAlrmSt_ToCloud
+-RmcuGenericFltAlrmSt_ToCloud
++RMCUGeneric_SigGrp- RmcuGenericFltAlrmSt
++FmcuGeneric_SigGrp- FmcuGenericFltAlrmSt
++GcuGeneric_SigGrp- GcuGenericFltAlrmSt
+ 输出信号：
+ SignalName
+ /
+ 显示/声音要求：
+-驱动电机故障，弹窗提示5s，具体以HMI设计为准
++1、驱动电机故障，弹窗提示5s，具体以HMI设计为准
++2、声音提醒，1Hz通用提示音，报警时长3声
+ 功能描述：
+-1、纯电/增程：驱动动力形式BAE01（纯电动）无需判断GCU信号；驱动动力形式BAE02（增程式混动）程需判断
+-GCU信号；
+-2、后驱/四驱：驱动方式BBZ01（单电机后驱）仅判断RMCU信号；驱动方式BBZ02（双电机四驱，前置+后置）判
+-断RMCU和FMCU信号；
++纯电/增程：纯电无需判断GCU信号，增程需判断GCU信号
++两驱/四驱：两驱（后驱）仅判断RMCU信号，四驱判断RMCU和FMCU信号
+ 指示 逻辑
+-驱动电机故障，文言提示 满足以下任意条件：
+-1、 FmcuGenericFltAlrmSt_ToCloud=0x2 or 0x3
+-2、 GcuGenericFltAlrmSt_ToCloud=0x2 or 0x3
+-3、 RmcuGenericFltAlrmSt_ToCloud=0x2 or 0x3
+-无 驱动电机故障，文言提示 不满足上述条件
++驱动电机故障，文言+声音提醒 满足以下任意条件：
++1、 RMCUGeneric_SigGrp- RmcuGenericFltAlrmSt=0x1 or 0x2
++2、 FmcuGeneric_SigGrp- FmcuGenericFltAlrmSt=0x1 or 0x2
++3、 GcuGeneric_SigGrp- GcuGenericFltAlrmSt=0x1 or 0x2
++无 驱动电机故障，文言+声音提醒 不满足上述条件
+ 故障及恢复处理：
+ 1、连续＜【Timeout】时间内未收到信号，保持当前状态不变；
+-2、判断【 FmcuGenericFltAlrmSt_ToCloud， GcuGenericFltAlrmSt_ToCloud， RmcuGenericFltAlrmSt_ToCloud】
+-任意信号丢失（纯电/增程：驱动动力形式BAE01（纯电动）无需判断GCU信号；驱动动力形式BAE02（增程式混
+-动）程需判断GCU信号；后驱/四驱：驱动方式BBZ01（单电机后驱）仅判断RMCU信号；驱动方式BBZ02（双电
+-机四驱，前置+后置）判断RMCU和FMCU信号），结束提醒；
++2、判断【 RMCUGeneric_SigGrp- RmcuGenericFltAlrmSt， FmcuGeneric_SigGrp- FmcuGenericFltAlrmSt，
++GcuGeneric_SigGrp- GcuGenericFltAlrmSt】任意信号丢失（纯电/增程：纯电无需判断GCU信号，增程需判断GCU
++信号；两驱/四驱：两驱（后驱）仅判断RMCU信号，四驱判断RMCU和FMCU信号），结束提醒；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'RmcuGenericFltAlrmSt' removed.
+-Description Reference 'FmcuGenericFltAlrmSt' removed.
+-Description Reference 'GcuGenericFltAlrmSt' removed.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'RMCUGeneric_SigGrp' removed.
+-Description Reference 'FmcuGeneric_SigGrp' removed.
+-Description Reference 'GcuGeneric_SigGrp' removed.
+-Signal dependency 'RMCUGeneric_SigGrp' removed.
+-
+-Signal dependency 'FmcuGeneric_SigGrp' removed.
+-Signal dependency 'GcuGeneric_SigGrp' removed.
+-Signal dependency 'RmcuGenericFltAlrmSt_ToCloud' added.
+-Signal dependency 'FmcuGenericFltAlrmSt_ToCloud' added.
+-Signal dependency 'GcuGenericFltAlrmSt_ToCloud' added.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'FmcuGenericFltAlrmSt_ToCloud' added.
+-Description Reference 'GcuGenericFltAlrmSt_ToCloud' added.
+-Description Reference 'RmcuGenericFltAlrmSt_ToCloud' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10329
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10329]
++++ 差分10327 [10329]
+@@ -16,7 +16,6 @@
+ 功能描述：
+ 指示 逻辑
+ 安全气囊故障，文言提示 ACU_1_LampWarning=0x2
+-
+ 无 安全气囊故障，文言提示 不满足上述条件
+ 故障及恢复处理：
+ 1、连续＜【Timeout】时间内未收到【 ACU_1_LampWarning】信号，保持当前状态不变；
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10330
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10330]
++++ 差分10327 [10330]
+@@ -1,6 +1,6 @@
+ 需求描述:
+ 配置字：
+-可变悬架形式BCE
++空气悬架
+ 整车条件：
+ 指示需同时满足以下两个条件：
+ 1、 UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking
+@@ -14,8 +14,6 @@
+ 显示/声音要求：
+ 空气悬架控制系统故障，弹窗提示5s，具体以HMI设计为准
+ 功能描述：
+-1、配置为可变悬架形式BCE02(单阀双腔空气悬架，软硬调节+高低调节)时，带此文言显示；
+-2、配置为可变悬架形式BCE01（普通弹簧悬架，软硬调节）时，无此文言显示；
+ 指示 逻辑
+ 空气悬架控制系统故障，文言提示 SusSysFltWrnSts_SigGrp- ASUSusWrnngMsg=0x7 or 0x8 or 0x9 or 0xA
+ or 0xB
+@@ -24,11 +22,3 @@
+ 1、连续＜【Timeout】时间内未收到【 SusSysFltWrnSts_SigGrp- ASUSusWrnngMsg】信号，保持当前状态不变；
+ 2、判断【 SusSysFltWrnSts_SigGrp- ASUSusWrnngMsg】信号丢失，结束提醒；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'SusSysFltWrnSts_SigGrp' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'SusSysFltWrnSts_SigGrp' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10332
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10332]
++++ 差分10327 [10332]
+@@ -23,6 +23,5 @@
+ 不满足上述条件
+ 故障及恢复处理：
+ 1、连续＜【Timeout】时间内未收到【 EgyIndicating】信号，保持当前状态不变；
+-
+ 2、判断【 EgyIndicating】信号丢失，结束提醒；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10334
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10334]
++++ 差分10327 [10334]
+@@ -7,54 +7,39 @@
+ 2、 CarModSts=0x0-0x7
+ 输入信号：
+ SignalName
+-HzrdLiWarn_SigGrp
++ActnOfLedTurnHzrdLi
+ 输出信号：
+ SignalName
+ /
+ 显示/声音要求：
+ 转向Tick/Tock提示音
+ 功能描述：
+-1、接收到转向信号【 HzrdLiWarn_SigGrp-ActnOfLedTurnHzrdLi】在0x0变化为0x1/0x2/0x3状态时触发Tick提示
+-音，声音频率由接收的信号控制；
+-2、接收到转向信号【 HzrdLiWarn_SigGrp-ActnOfLedTurnHzrdLi】在0x1/0x2/0x3变化为0x0状态时触发Tock提示
+-音，声音频率由接收的信号控制；
+-3、接收到转向信号【 HzrdLiWarn_SigGrp-ActnOfLedTurnHzrdLi】在0x1/0x2/0x3状态之间变化时不做处理；
++1、接收到转向信号【 ActnOfLedTurnHzrdLi】在0x0变化为0x1/0x2/0x3状态时触发Tick提示音，声音频率由接收的
++信号控制；
++2、接收到转向信号【 ActnOfLedTurnHzrdLi】在0x1/0x2/0x3变化为0x0状态时触发Tock提示音，声音频率由接收的
++信号控制；
++3、接收到转向信号【 ActnOfLedTurnHzrdLi】在0x1/0x2/0x3状态之间变化时不做处理；
+ 故障及恢复处理：
+-1、连续＜【Timeout】时间内未收到【 HzrdLiWarn_SigGrp-ActnOfLedTurnHzrdLi】信号，保持当前状态不变；
+-2、判断【 HzrdLiWarn_SigGrp-ActnOfLedTurnHzrdLi】信号丢失，结束提醒；
++1、连续＜【Timeout】时间内未收到【 ActnOfLedTurnHzrdLi】信号，保持当前状态不变；
++2、判断【 ActnOfLedTurnHzrdLi】信号丢失，结束提醒；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-
+ 为更好理解转向声音状态，截取车身域部分设计定义：
+ a、慢闪模式：
+ 在慢闪模式下，慢闪频率要满足1-2HZ的要求，定义慢闪周期为720ms（360ms点亮6个转向灯，360ms熄灭6个转
+ 向灯）。
+-进入慢闪模式时，每周期的前360ms时 HzrdLiWarn_SigGrp-ActnOfLedTurnHzrdLi= 3，后360ms的
+-HzrdLiWarn_SigGrp-ActnOfLedTurnHzrdLi= 0。
++进入慢闪模式时，每周期的前360ms时 ActnOfLedTurnHzrdLi= 3，后360ms的 ActnOfLedTurnHzrdLi= 0。
+ b、快闪模式：
+ 在快闪模式下，快闪频率要满足4±1HZ的要求，初步定义快闪周期为280ms（140ms点亮6个转向灯，140ms熄灭6
+ 个转向灯）。
+-进入快闪模式时，每周期的前140ms时 HzrdLiWarn_SigGrp-ActnOfLedTurnHzrdLi= 3，后140ms的
+-HzrdLiWarn_SigGrp-ActnOfLedTurnHzrdLi= 0。
+-退出快闪模式时， HzrdLiWarn_SigGrp-ActnOfLedTurnHzrdLi= 0。
++进入快闪模式时，每周期的前140ms时 ActnOfLedTurnHzrdLi = 3，后140ms的 ActnOfLedTurnHzrdLi = 0。
++退出快闪模式时， ActnOfLedTurnHzrdLi = 0。
+ c、转向模式
+ 左转向：
+ ①，转向灯闪烁周期定为720ms（360ms点亮3个转向灯，360ms熄灭3个转向灯）。
+-②，每周期的前360ms时 HzrdLiWarn_SigGrp-ActnOfLedTurnHzrdLi= 1，后360ms的 HzrdLiWarn_SigGrp-
+-ActnOfLedTurnHzrdLi= 0。
++②，每周期的前360ms时 ActnOfLedTurnHzrdLi= 1，后360ms的 ActnOfLedTurnHzrdLi= 0。
+ 右转向：
+ ①，转向灯闪烁周期定为720ms（360ms点亮3个转向灯，360ms熄灭3个转向灯）。
+-②，每周期的前360ms时 HzrdLiWarn_SigGrp-ActnOfLedTurnHzrdLi= 2，后360ms的 HzrdLiWarn_SigGrp-
+-ActnOfLedTurnHzrdLi=0。
++②，每周期的前360ms时 ActnOfLedTurnHzrdLi = 2，后360ms的 ActnOfLedTurnHzrdLi =0。
+ d、其它
+ 在模式切换时，上一个模式执行一个完整的周期后再退出再切换到下一个模式（包含危险警告的快闪和慢闪，转向
+ 的左转向，左变道，右转向，右变道）。
+-(1) => E3(2):
+-Description modified.
+-Signal dependency 'ActnOfLedTurnHzrdLi' removed.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'ActnOfLedTurnHzrdLi' removed.
+-Signal dependency 'HzrdLiWarn_SigGrp' added.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'HzrdLiWarn_SigGrp' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10339
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10339]
++++ 差分10327 [10339]
+@@ -7,7 +7,6 @@
+ 2、 CarModSts=0x0-0x7
+ 输入信号：
+ SignalName
+-
+ DrvrGearLvrLockIndcn
+ 输出信号：
+ SignalName
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10341
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10341]
++++ 差分10327 [10341]
+@@ -11,7 +11,6 @@
+ 输出信号：
+ SignalName
+ /
+-
+ 显示/声音要求：
+ 当前状态禁止换挡，弹窗提示5s，具体以HMI设计为准
+ 功能描述：
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10361
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10361]
++++ 差分10327 [10361]
+@@ -1,4 +1,2 @@
+ 需求描述:
+-导航时，显示TBT信息，包含剩余目的地距离、预计导航时间、到达目的地时间、行驶方向、下一个路口信息；
+-(1) => E3(2):
+-Description modified.
++导航时，显示TBT信息，包含剩余目的地距离、预计导航时间、到达目的地时间、行驶方向、下一个路口信息等；
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10364
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10364]
++++ 差分10327 [10364]
+@@ -1,5 +1,2 @@
+ 需求描述:
+-播放音乐时，显示播放的歌曲信息，包含歌曲封面、歌曲名、歌手名、歌曲播放进度信息；
+-
+-(1) => E3(2):
+-Description modified.
++播放音乐时，显示播放的歌曲信息，包含歌曲封面、歌曲名、歌手名、歌曲播放进度等信息；
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 10370
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [10370]
++++ 差分10327 [10370]
+@@ -1,4 +1,2 @@
+ 需求描述:
+-蓝牙通话时，显示来电/去电状态、通话号码、姓名、头像、通话时间；
+-(1) => E3(2):
+-Description modified.
++蓝牙通话时，显示来电/去电状态、通话号码、姓名、头像、通话时间等；
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 11790
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [11790]
++++ 差分10327 [11790]
+@@ -1,7 +1,8 @@
+ 需求描述:
+ 前置条件：
+ 1.配置字
+-\
++当配置字XX = 0x0 无此功能时，音频不对告警灯发声
++当配置字XX = 0x1 有此功能时，音频对告警灯发声
+ 2.整车条件
+ 当 CarModSts= CarModNorm(0x0), CarModTrnsp(0x1), CarModFcy(0x2), CarModCrash(0x3),
+ CarModShow(0x4), CarModDyno(0x5), CarModCali(0x6), CarModMiant(0x7) And
+@@ -9,34 +10,18 @@
+ 音频执行发音动作；
+ 3.系统逻辑:
+ 左转向灯：
+-当信号 HzrdLiWarn_SigGrp.ActnOfLedTurnHzrdLi从0变成1时，发声：嘀，持续一定时间(如100ms，具体时长待标
+-定); 在本次持续发声过程中，信号变化时，继续本次发声(嘀), 直到完成。
+-完成“嘀“发声后，立即检测信号 HzrdLiWarn_SigGrp.ActnOfLedTurnHzrdLi从其他值变成0，发声“哒”，持续一定时
+-间(如100ms，具体时长待标定); 直到完成。完成整个过程后再次检测信号 HzrdLiWarn_SigGrp
+-.ActnOfLedTurnHzrdLi。
++当信号 ActnOfLedTurnHzrdLi从0变成1时，发声：嘀，持续一定时间(如100ms，具体时长待标定); 在本次持续发声
++过程中，信号变化时，继续本次发声(嘀), 直到完成。
++完成“嘀“发声后，立即检测信号 ActnOfLedTurnHzrdLi从其他值变成0，发声“哒”，持续一定时间(如100ms，具体时
++长待标定); 直到完成。完成整个过程后再次检测信号 ActnOfLedTurnHzrdLi。
+ 右转向灯：
+-当信号 HzrdLiWarn_SigGrp.ActnOfLedTurnHzrdLi从0变成2时，发声：嘀，持续一定时间(如100ms，具体时长待标
+-定); 在本次持续发声过程中，信号变化时，继续本次发声(嘀), 直到完成。
+-完成“嘀“发声后，立即检测信号 HzrdLiWarn_SigGrp.ActnOfLedTurnHzrdLi从其他值变成0，发声“哒”，持续一定时
+-间(如100ms，具体时长待标定); 直到完成。完成整个过程后再次检测信号 HzrdLiWarn_SigGrp
+-.ActnOfLedTurnHzrdLi。
++当信号 ActnOfLedTurnHzrdLi从0变成2时，发声：嘀，持续一定时间(如100ms，具体时长待标定); 在本次持续发声
++过程中，信号变化时，继续本次发声(嘀), 直到完成。
++完成“嘀“发声后，立即检测信号 ActnOfLedTurnHzrdLi从其他值变成0，发声“哒”，持续一定时间(如100ms，具体时
++长待标定); 直到完成。完成整个过程后再次检测信号 ActnOfLedTurnHzrdLi。
+ 危险告警灯:
+-
+-当信号 HzrdLiWarn_SigGrp.ActnOfLedTurnHzrdLi从0变成3时，发声：嘀，持续一定时间(如100ms，具体时长待标
+-定); 在本次持续发声过程中，信号变化时，继续本次发声(嘀), 直到完成。
+-完成“嘀“发声后，立即检测信号 HzrdLiWarn_SigGrp.ActnOfLedTurnHzrdLi从其他值变成0，发声“哒”，持续一定时
+-间(如100ms，具体时长待标定); 直到完成。完成整个过程后再次检测信号 HzrdLiWarn_SigGrp
+-.ActnOfLedTurnHzrdLi。
++当信号 ActnOfLedTurnHzrdLi从0变成3时，发声：嘀，持续一定时间(如100ms，具体时长待标定); 在本次持续发声
++过程中，信号变化时，继续本次发声(嘀), 直到完成。
++完成“嘀“发声后，立即检测信号 ActnOfLedTurnHzrdLi从其他值变成0，发声“哒”，持续一定时间(如100ms，具体时
++长待标定); 直到完成。完成整个过程后再次检测信号 ActnOfLedTurnHzrdLi。
+ 备注：危险告警灯分慢闪，快闪，故障闪烁，发声时间不一样。
+-(1) => (2):
+-Description modified.
+-Signal dependency 'ActiveTurnIndcrLe' removed.
+-Signal dependency 'ActiveTurnIndcrRi' removed.
+-Signal dependency 'ActnOfLedTurnHzrdLi' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'ActnOfLedTurnHzrdLi' removed.
+-Signal dependency 'HzrdLiWarn_SigGrp' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'HzrdLiWarn_SigGrp' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 11954
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [11954]
++++ 差分10327 [11954]
+@@ -1,7 +1,8 @@
+ 需求描述:
+ 前置条件：
+ 1.配置字
+-\
++当配置字XX = 0x0 无此功能时，音频不对制动系统状态信息故障发声
++当配置字XX = 0x1 有此功能时，音频对制动系统状态信息故障发声
+ 2.整车条件
+ 当 CarModSts = CarModNorm(0x0), CarModTrnsp(0x1), CarModFcy(0x2), CarModCrash(0x3),
+ CarModShow(0x4), CarModDyno(0x5), CarModCali(0x6), CarModMiant(0x7) And
+@@ -15,6 +16,5 @@
+ ( BrakeSystemStatus != BBF_DegradedPedalFeel(1)) && ( BrakeSystemStatus != BBF_CircuitSperation(2)) &&
+ ( BrakeSystemStatus != BBF_C1/2BoostOnly(3)) && ( BrakeSystemStatus == HydBackw/act/HydBackw/oact(4))
+ 1 开机自检过程(假定2S)中，不对制动系统状态信息故障提示信号 BrakeSystemStatus的值做处理；
+-
+ 2 开启自检完成时，制动系统状态信息故障提示信号 BrakeSystemStatus的值默认值是0，当信号
+ BrakeSystemStatus的值从默认值(0)变成声音报警满足条件时，声音报警一次；
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 11955
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [11955]
++++ 差分10327 [11955]
+@@ -1,7 +1,8 @@
+ 需求描述:
+ 前置条件：
+ 1.配置字
+-\
++当配置字XX = 0x0 无此功能时，音频不对EBD故障信息报警发声
++当配置字XX = 0x1 有此功能时，音频对EBD故障信息报警发声
+ 2.整车条件
+ 当 CarModSts = CarModNorm(0x0), CarModTrnsp(0x1), CarModFcy(0x2), CarModCrash(0x3),
+ CarModShow(0x4), CarModDyno(0x5), CarModCali(0x6), CarModMiant(0x7) And
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 11957
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [11957]
++++ 差分10327 [11957]
+@@ -18,20 +18,20 @@
+ 6、指示车速25km/h，即是仪表屏车速显示25km/h，对应 CcuICD_SigGrp. VehicleSpdDisplay=25km/h and
+ CcuICD_SigGrp. VehicleSpdDisplayValid=0x1
+ 7、满足任意条件（主驾坐人且未系安全带、副驾坐人且未系安全带、后排左侧坐人且未系安全带、后排中间坐人
+-且未系安全带、后排右侧坐人且未系安全带），且指示车速＜=25km/h（暂定，可调整）时，图标常亮，安全带界
+-面对应位置显示安全带状态红色常亮；
++且未系安全带、后排右侧坐人且未系安全带），且指示车速＜25km/h（暂定，可调整）时，图标常亮，安全带界面
++对应位置显示安全带状态红色常亮；
+ 8、满足任意条件（主驾坐人且未系安全带、副驾坐人且未系安全带、后排左侧坐人且未系安全带、后排中间坐人
+-且未系安全带、后排右侧坐人且未系安全带），且指示车速>25km/h （暂定，可调整）时，图标闪烁（0.5s on，
++且未系安全带、后排右侧坐人且未系安全带），且指示车速≥25km/h （暂定，可调整）时，图标闪烁（0.5s on，
+ 音，提示音与闪烁频率同步），前排报警时长120s，后排报警时长40s，声音报警结束后，图标同步变为常亮，安
+ 全带界面对应位置安全带显示红色常亮状态；
+ 9、声音触发后，可以被以下条件关闭：
+-a、前排声音报警时长超过120s，后排声音报警时长超过60s ，则声音关闭，图标常亮，安全带界面对应位置显示
++a、前排声音报警时长超过120s，后排声音报警时长超过40s ，则声音关闭，图标常亮，安全带界面对应位置显示
+ 安全带状态红色常亮；
+ b、触发报警的安全带全部系好，声音立即关闭，图标同时熄灭，以及安全带界面对应位置不显示安全带；
+ c、电源模式（即整车条件）不满足要求；
+ 10、声音触发后，可以在以下条件暂停：
+ a、声音报警期间，挂入倒挡（ GearLvrIndcn=0x1），声音报警暂停，恢复非倒挡，重新激活声音报警检测，满足
+-报警条件时，声音报警时长重新计时，前排120s，后排60s；
++报警条件时，声音报警时长重新计时，前排120s，后排40s；
+ b、声音报警期间，有其他更高优先级报警（声音）被触发，则声音报警被打断，声音报警（含计时）暂停。若打
+ 断时间＜10s，报警符号保持闪烁，打断结束后继续进行声音报警并延续暂停之前的计时。若打断时间≥10s，则报
+ 警符号变为常亮，并在打断结束后重新开始声音报警，符号同步闪烁，且声音报警时长重新计时，前排120s，后排
+@@ -46,36 +46,6 @@
+ 14、任何阶段，安全带系上可随时熄灭图标及安全带界面对应安全带状态显示，并结束声音报警；
+ 注：后排安全带声音提醒，中控屏上有对应软开关，需根据软开关设置状态控制，如设置为关闭，后排安全带不触
+ 发声音提醒；
+-当接收到 后排安全带声音报警忽略通知时， 一个点火周期内，不判断后排安全带的状态(系与未系)。
+-
+ 故障及恢复处理：
+ 1、连续＜【Timeout】时间内未收到信号，指示灯保持当前状态不变；
+ 2、判断安全带信号丢失时，认为不满足安全带未系条件，指示灯熄灭；
+-(1) => (2):
+-Description modified.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'ACU_1_DriverSeatBeltWarning' removed.
+-Description Reference 'ACU_1_PsngrSeatBeltWarning' removed.
+-Description Reference 'ACU_1_DriverSeatOccupiedSts' removed.
+-Description Reference 'ACU_1_PsngrSeatOccupiedSts' removed.
+-Description Reference 'ACU_1_SecRowLBeltWarning' removed.
+-Description Reference 'ACU_1_SecRowLSeatOccupiedSts' removed.
+-Description Reference 'ACU_1_SecRowMBeltWarning' removed.
+-Description Reference 'ACU_1_SecRowMSeatOccupiedSts' removed.
+-Description Reference 'ACU_1_SecRowRBeltWarning' removed.
+-Description Reference 'ACU_1_SecRowRSeatOccupiedSts' removed.
+-Description Reference 'CcuICD_SigGrp' removed.
+-Description Reference 'CarModSts' added.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'ACU_1_DriverSeatBeltWarning' added.
+-Description Reference 'ACU_1_PsngrSeatBeltWarning' added.
+-Description Reference 'ACU_1_DriverSeatOccupiedSts' added.
+-Description Reference 'ACU_1_PsngrSeatOccupiedSts' added.
+-Description Reference 'ACU_1_SecRowLBeltWarning' added.
+-Description Reference 'ACU_1_SecRowLSeatOccupiedSts' added.
+-Description Reference 'ACU_1_SecRowMBeltWarning' added.
+-Description Reference 'ACU_1_SecRowMSeatOccupiedSts' added.
+-Description Reference 'ACU_1_SecRowRBeltWarning' added.
+-Description Reference 'ACU_1_SecRowRSeatOccupiedSts' added.
+-Description Reference 'CcuICD_SigGrp' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 11961
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [11961]
++++ 差分10327 [11961]
+@@ -14,7 +14,6 @@
+ 副驾门开 DoorPassSts=0x1
+ 后左门开 DoorLeReSts=0x1
+ 后右门开 DoorRiReSts=0x1
+-
+ 前舱盖开启 HoodSts=0x2
+ 后备箱开启 TrSts=0x2 or 0x3 or 0x4
+ 门开条件：( DoorDrvrSts == 0x1) 或 ( DoorPassSts == 0x1) 或 ( DoorLeReSts == 0x1) 或 ( DoorRiReSts == 0x1) 或 (
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 12046
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [12046]
++++ 差分10327 [12046]
+@@ -7,7 +7,6 @@
+ CarModShow(0x4), CarModDyno(0x5), CarModCali(0x6), CarModMiant(0x7) And
+ UsgModSts = Standby(1), Convenience(2), Driving(4), Parking(5)时，
+ 音频对安全信息报警执行发音动作；
+-
+ 系统逻辑：
+ 1、安全带未正确佩戴（包含仅安全带插头插入锁扣、安全带系在乘员后侧、肩带在后侧，腰带正确佩戴等），状
+ 态无需区分判断，统一定义为安全带未正确佩戴；
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 12056
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [12056]
++++ 差分10327 [12056]
+@@ -3,36 +3,24 @@
+ /
+ 整车条件：
+ 指示需同时满足以下两个条件：
+-1、 UsgModSts=0x1 Standby or 0x2 Convenience or 0x4 Driving or 0x5 Parking
+-2、 CarModSts=0x0-0x7
++1、 UsgModSts =0x2 Convenience or 0x4 Driving or 0x5 Parking
++2、 CarModSts =0x0-0x7
+ 输入信号：
+ SignalName
+ Therunawy
+ 输出信号：
+ SignalName
+ /
+-显示/声音要求：
+-1、电池热失控，请立即离开并远离车辆，文言提示+声音提醒
+-2、4Hz通用提示音，报警时长跟随信号，具体以HMI设计为准
++显示 /声音要求：
++动力电池热扩散，文言提示 +声音提醒
+ 功能描述：
+ 指示 逻辑
+-电池热失控，请立即离开并远离车辆，文言提示
+-+声音提醒
++动力电池热扩散，文言提示 +声音提醒
+ 信号满足提醒要求，报警一直存在，含显示和声
+ 音
+-Therunawy=0x1
+-无 电池热失控，请立即离开并远离车辆，文言提
+-示+声音提醒
+-不满足上述条件
++Therunawy =0x1
++无 动力电池热扩散，文言提示 +声音提醒 不满足上述条件
+ 故障及恢复处理：
+-1、连续＜【Timeout】时间内未收到【 Therunawy】信号，保持当前状态不变；
++1、连续＜【 Timeout】时间内未收到【 Therunawy】信号，保持当前状态不变；
+ 2、判断【 Therunawy】信号丢失，保持当前状态不变；
+-3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'Therunawy' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'Therunawy' added.
++3、 MsgCounter和 Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 12063
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [12063]
++++ 差分10327 [12063]
+@@ -6,12 +6,7 @@
+ 1、 UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking
+ 2、 CarModSts=0x0-0x7
+ 输入信号：
+-
+ SignalName
+-TPMS_FLWarn
+-TPMS_FRWarn
+-TPMS_RLWarn
+-TPMS_RRWarn
+ 输出信号：
+ SignalName
+ /
+@@ -20,51 +15,14 @@
+ （建议），具体以HMI设计为准
+ 2、图标颜色：黄色
+ 功能描述：
+-显示优先级：2Hz闪烁1min后常亮 ＞ on；
+-在故障灯闪烁1min过程中触发其他闪烁报警，闪烁时长重新计时，如触发左前胎压快速漏气报警时，胎压故障灯
+-2Hz闪烁1min后常亮，在闪烁过程中，触发右前胎压未学习报警，此时胎压故障灯闪烁重新计时，闪烁1min后常
+-亮；
+ 指示 逻辑
+ on
+-满足以下任意条件：
+-1、 TPMS_FLWarn=0x4（高压） or 0x7（低压） or 0x5（高
+-温）
+-2、 TPMS_FRWarn=0x4（高压） or 0x7（低压） or 0x5（高
+-温）
+-3、 TPMS_RLWarn=0x4（高压） or 0x7（低压） or 0x5（高
+-温）
+-4、 TPMS_RRWarn=0x4（高压） or 0x7（低压） or 0x5（高
+-温）
++TBD
+ 2Hz闪烁1min后常亮
+-满足以下任意条件：
+-1、 TPMS_FLWarn=0x6（快速漏气） or 0x9（未学习） or 0x2
+-（传感器数据丢失） or 0x3（低电量）
+-2、 TPMS_FRWarn=0x6（快速漏气） or 0x9（未学习） or 0x2
+-（传感器数据丢失） or 0x3（低电量）
+-3、 TPMS_RLWarn=0x6（快速漏气） or 0x9（未学习） or 0x2
+-（传感器数据丢失） or 0x3（低电量）
+-4、 TPMS_RRWarn=0x6（快速漏气） or 0x9（未学习） or
+-0x2（传感器数据丢失） or 0x3（低电量）
++TBD
+ off
+ 不满足上述条件
+ 故障及恢复处理：
+-1、连续＜【Timeout】时间内未收到【 TPMS_FLWarn， TPMS_FRWarn， TPMS_RLWarn， TPMS_RRWarn】信
+-号，指示灯保持当前状态不变；
+-2、判断【 TPMS_FLWarn， TPMS_FRWarn， TPMS_RLWarn， TPMS_RRWarn】任意信号丢失，指示灯2Hz闪烁
+-1min后常亮；
++1、连续＜【Timeout】时间内未收到【TBD】信号，指示灯保持当前状态不变；
++2、判断【TBD】信号丢失，指示灯2Hz闪烁1min后常亮；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Signal dependency 'TPMS_FLWarn' added.
+-Signal dependency 'TPMS_FRWarn' added.
+-Signal dependency 'TPMS_RLWarn' added.
+-Signal dependency 'TPMS_RRWarn' added.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'TPMS_FLWarn' added.
+-
+-Description Reference 'TPMS_FRWarn' added.
+-Description Reference 'TPMS_RLWarn' added.
+-Description Reference 'TPMS_RRWarn' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 12064
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [12064]
++++ 差分10327 [12064]
+@@ -1,6 +1,5 @@
+ 需求描述:
+ 功能 示意图 颜色 自检 CarModSts UsgModSts 备注
+-
+ 左转向
+ 绿色 /
+ 0x0 CarModNorm
+@@ -9,12 +8,12 @@
+ 0x3 CarModCrash
+ 0x4 CarModShow
+ 0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x1 Standby
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
++0x1 Standby
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++0x6 CarModCali
++0x7 CarModMiant
+ 右转向
+ 绿色 /
+ 0x0 CarModNorm
+@@ -131,28 +130,27 @@
+ 0x3 CarModCrash
+ 0x4 CarModShow
+ 0x5 CarModDyno
+-0x1 Standby
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-自检3s
+-
+-0x6 CarModCali
+-0x7 CarModMiant
++0x6 CarModCali
++0x7 CarModMiant
++0x1 Standby
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++自检3s
+ 电子驻车故障灯
+ 黄色 是
+ 0x0 CarModNorm
+ 0x1 CarModTrnsp
+ 0x2 CarModFcy
+ 0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-自检3s
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++自检3s
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
+ 电子稳定控制系统工作/
+ 故障灯
+ 黄色 是
+@@ -230,8 +228,7 @@
+ 0x5 Parking
+ 自检3s
+ 空气悬架系统故障灯
+-黄色
+-红色 是（红色）
++红色 是
+ 0x0 CarModNorm
+ 0x1 CarModTrnsp
+ 0x2 CarModFcy
+@@ -287,17 +284,16 @@
+ 0x0 CarModNorm
+ 0x1 CarModTrnsp
+ 0x2 CarModFcy
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-自检3s
+-不满足配置
+-
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++自检3s
++不满足配置
+ 字要求时无
+ 需自检
+ 发动机冷却液温度高
+@@ -394,7 +390,6 @@
+ 0x2 Convenience
+ 0x4 Driving
+ 0x5 Parking
+-自检3s
+ 安全气囊故障灯
+ 红色 是
+ 0x0 CarModNorm
+@@ -436,7 +431,6 @@
+ 0x2 Convenience
+ 0x4 Driving
+ 0x5 Parking
+-
+ 驱动功率限制
+ 黄色 /
+ 0x0 CarModNorm
+@@ -445,11 +439,11 @@
+ 0x3 CarModCrash
+ 0x4 CarModShow
+ 0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++0x6 CarModCali
++0x7 CarModMiant
+ 充电线连接指示灯
+ 红色 是
+ 0x0 CarModNorm
+@@ -571,27 +565,26 @@
+ 0x3 CarModCrash
+ 0x4 CarModShow
+ 0x5 CarModDyno
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-自检3s
+-
+-0x6 CarModCali
+-0x7 CarModMiant
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++自检3s
+ 门开状态灯
+ 红色 /
+ 0x0 CarModNorm
+ 0x1 CarModTrnsp
+ 0x2 CarModFcy
+ 0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x1 Standby
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
++0x1 Standby
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
+ 1、整车模式由【 CarModSts=0x0-0x7 and UsgModSts=0x0 Sleeping or 0x1 Standby or 0x3 SWDL】变化为【
+ CarModSts=0x0-0x7 and UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking】时，此时指示灯上电自
+ 检；
+@@ -599,9 +592,3 @@
+ 间一般为3s，特别的，安全气囊自检时间为8s；
+ 3、对于自检的指示灯，在自检结束时，根据接收的CAN-FD信号显示，如需点亮时直接点亮，不能出现点亮（自
+ 检）-熄灭-点亮的闪烁状态；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' added.
+-Description Reference 'UsgModSts' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 12077
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [12077]
++++ 差分10327 [12077]
+@@ -7,114 +7,18 @@
+ 2、 CarModSts=0x0-0x7
+ 输入信号：
+ SignalName
+-TPMS_FLTyreP
+-TPMS_FLTyreT
+-TPMS_FRTyreP
+-TPMS_FRTyreT
+-TPMS_RLTyreP
+-TPMS_RLTyreT
+-TPMS_RRTyreP
+-TPMS_RRTyreT
+-TPMS_FLWarn
+-
+-TPMS_FRWarn
+-TPMS_RLWarn
+-TPMS_RRWarn
+ 输出信号：
+ SignalName
+ /
+ 显示要求：
+-1、显示各个轮胎的胎压/胎温数值；
++1、显示各个轮胎的胎压数值；
++（示意图）
+ 2、显示方式：数字显示；
+-3、显示精度：0.1Bar/1℃；
++3、显示精度：0.1Bar；
+ 4、可显示轮胎胎压系统异常状态，与轮胎胎压系统正常状态明显区分；
+ 功能描述：
+-1、胎压/胎温数值/单位显示
+-TPMS_XXTypeP，为各个轮胎胎压信号，信号单位Kpa，需转为Bar；在信号等于0xFF时显示为-.-Bar，在信号不等
+-于0xFF时，根据接收的信号处理后（向下取整，如2.38Bar，显示为2.3Bar）显示；
+-TPMS_XXTypeT，为各个轮胎胎温信号，信号单位℃，在信号等于0xFF时显示为--℃，在信号不等于0xFF时，根
+-据接收的信号显示；
+ 指示 逻辑
+-左前轮胎胎压，数值显示 TPMS_FLTyreP
+-右前轮胎胎压，数值显示 TPMS_FRTyreP
+-左后轮胎胎压，数值显示 TPMS_RLTyreP
+-右后轮胎胎压，数值显示 TPMS_RRTyreP
+-左前轮胎胎温，数值显示 TPMS_FLTyreT
+-右前轮胎胎温，数值显示 TPMS_FRTyreT
+-左后轮胎胎温，数值显示 TPMS_RLTyreT
+-右后轮胎胎温，数值显示 TPMS_RRTyreT
+-2、胎压/胎温颜色以及轮胎状态显示
+-指示 逻辑
+-左前轮胎胎压/胎温数值，颜色显示，轮胎状态
+-显示
+-TPMS_FLWarn
+-0x4（高压） or 0x7（低压） or 0x5（高温）or 0x6（快速漏气）
+-or 0x9（未学习） or 0x2（传感器数据丢失） or 0x3（低电量）
+-时：
+-1、对应的胎压/胎温显示异常状态（如红色）
+-2、对应的轮胎显示异常状态（如红色）
+-右前轮胎胎压/胎温数值，颜色显示，轮胎状态
+-显示
+-TPMS_FRWarn
+-0x4（高压） or 0x7（低压） or 0x5（高温）or 0x6（快速漏气）
+-or 0x9（未学习） or 0x2（传感器数据丢失） or 0x3（低电量）
+-时：
+-1、对应的胎压/胎温显示异常状态（如红色）
+-2、对应的轮胎显示异常状态（如红色）
+-左后轮胎胎压/胎温数值，颜色显示，轮胎状态
+-显示
+-TPMS_RLWarn
+-0x4（高压） or 0x7（低压） or 0x5（高温）or 0x6（快速漏气）
+-or 0x9（未学习） or 0x2（传感器数据丢失） or 0x3（低电量）
+-时：
+-1、对应的胎压/胎温显示异常状态（如红色）
+-2、对应的轮胎显示异常状态（如红色）
+-右后轮胎胎压/胎温数值，颜色显示，轮胎状态
+-显示
+-TPMS_RRWarn
+-0x4（高压） or 0x7（低压） or 0x5（高温）or 0x6（快速漏气）
+-or 0x9（未学习） or 0x2（传感器数据丢失） or 0x3（低电量）
+-时：
+-1、对应的胎压/胎温显示异常状态（如红色）
+-2、对应的轮胎显示异常状态（如红色）
+ 故障及恢复处理：
+-1、连续＜【Timeout】时间内未收到【 TPMS_FLTyreP， TPMS_FRTyreP， TPMS_RLTyreP， TPMS_RRTyreP，
+-TPMS_FLTyreT， TPMS_FRTyreT， TPMS_RLTyreT， TPMS_RRTyreT】信号，胎压界面显示保持当前状态不变；
+-2、判断【 TPMS_FLTyreP， TPMS_FRTyreP， TPMS_RLTyreP， TPMS_RRTyreP】信号丢失，相应轮胎胎压显
+-
+-示“-.-Bar”；
+-3、判断【 TPMS_FLTyreT， TPMS_FRTyreT， TPMS_RLTyreT， TPMS_RRTyreT】信号丢失，相应轮胎胎温显
+-示“--℃”；
+-4、判断【 TPMS_FLWarn， TPMS_FRWarn， TPMS_RLWarn， TPMS_RRWarn】信号丢失，相应轮胎状态显示为
+-正常状态；
+-5、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Signal dependency 'TPMS_FLTyreP' added.
+-Signal dependency 'TPMS_FLTyreT' added.
+-Signal dependency 'TPMS_FRTyreP' added.
+-Signal dependency 'TPMS_FRTyreT' added.
+-Signal dependency 'TPMS_RLTyreP' added.
+-Signal dependency 'TPMS_RLTyreT' added.
+-Signal dependency 'TPMS_RRTyreP' added.
+-Signal dependency 'TPMS_RRTyreT' added.
+-Signal dependency 'TPMS_FLWarn' added.
+-Signal dependency 'TPMS_FRWarn' added.
+-Signal dependency 'TPMS_RLWarn' added.
+-Signal dependency 'TPMS_RRWarn' added.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'TPMS_FLTyreP' added.
+-Description Reference 'TPMS_FLTyreT' added.
+-Description Reference 'TPMS_FRTyreP' added.
+-Description Reference 'TPMS_FRTyreT' added.
+-Description Reference 'TPMS_RLTyreP' added.
+-Description Reference 'TPMS_RLTyreT' added.
+-Description Reference 'TPMS_RRTyreP' added.
+-Description Reference 'TPMS_RRTyreT' added.
+-Description Reference 'TPMS_FLWarn' added.
+-Description Reference 'TPMS_FRWarn' added.
+-Description Reference 'TPMS_RLWarn' added.
+-Description Reference 'TPMS_RRWarn' added.
++1、连续＜【Timeout】时间内未收到【】信号，胎压显示保持当前状态不变；
++2、判断【】信号丢失，胎压显示“-.-Bar”；
++3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 12078
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [12078]
++++ 差分10327 [12078]
+@@ -1,8 +1,15 @@
+ 需求描述:
+-具体需求参照Requirement ID:18137
+-(1) => (2):
+-Description modified.
+-Signal dependency 'CarModSts' removed.
+-Signal dependency 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'UsgModSts' removed.
++前置条件：
++1.配置字
++\
++2.整车条件
++当 CarModSts = CarModNorm(0x0), CarModTrnsp(0x1), CarModFcy(0x2), CarModCrash(0x3),
++CarModShow(0x4), CarModDyno(0x5), CarModCali(0x6), CarModMiant(0x7) And
++UsgModSts = Standby(1), Convenience(2), Driving(4), Parking(5)时，
++音频对ELK(紧急车道保持)音效报警提示执行发音动作；
++系统逻辑:
++信号(XX) 待定
++声音播报的信号值X待定
++1 开机自检过程(假定2S)中，不对ELK(紧急车道保持)音效报警提示信号(XX)的值做处理；
++2 开启自检完成时，ELK(紧急车道保持)音效报警提示提示信号(XX)的值默认值是0，信号(XX)由其他值变化为0x1
++时，声音提示一声。
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 12081
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [12081]
++++ 差分10327 [12081]
+@@ -1,9 +1,15 @@
+ 需求描述:
+-具体需求参照Requirement ID:18231
+-
+-(1) => (2):
+-Description modified.
+-Signal dependency 'CarModSts' removed.
+-Signal dependency 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'UsgModSts' removed.
++前置条件：
++1.配置字
++\
++2.整车条件
++当 CarModSts = CarModNorm(0x0), CarModTrnsp(0x1), CarModFcy(0x2), CarModCrash(0x3),
++CarModShow(0x4), CarModDyno(0x5), CarModCali(0x6), CarModMiant(0x7) And
++UsgModSts = Standby(1), Convenience(2), Driving(4), Parking(5)时，
++音频对BSD(盲区监测)音效报警提示执行发音动作；
++系统逻辑:
++信号(XX) 待定
++声音播报的信号值X待定
++1 开机自检过程(假定2S)中，不对BSD(盲区监测)音效报警信号(XX)的值做处理；
++2 开启自检完成时，BSD(盲区监测)音效报警提示信号(XX)的值默认值是0，信号(XX)由其他值变化为X时，声音提
++示一声。
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 12082
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [12082]
++++ 差分10327 [12082]
+@@ -1,8 +1,15 @@
+ 需求描述:
+-具体需求参照Requirement ID:18235
+-(1) => (2):
+-Description modified.
+-Signal dependency 'CarModSts' removed.
+-Signal dependency 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'UsgModSts' removed.
++前置条件：
++1.配置字
++\
++2.整车条件
++当 CarModSts = CarModNorm(0x0), CarModTrnsp(0x1), CarModFcy(0x2), CarModCrash(0x3),
++CarModShow(0x4), CarModDyno(0x5), CarModCali(0x6), CarModMiant(0x7) And
++UsgModSts = Standby(1), Convenience(2), Driving(4), Parking(5)时，
++音频对AES(紧急避让辅助)音效报警提示执行发音动作；
++系统逻辑:
++信号(XX) 待定
++声音播报的信号值X待定
++1 开机自检过程(假定2S)中，不对AES(紧急避让辅助)音效报警提示信号(XX)的值做处理；
++2 开启自检完成时，AES(紧急避让辅助)音效报警提示信号(XX)的值默认值是0，信号(XX)由其他值变化为X时，声
++音提示一声。
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 12083
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [12083]
++++ 差分10327 [12083]
+@@ -1,8 +1,15 @@
+ 需求描述:
+-具体需求参照Requirement ID:18239
+-(1) => (2):
+-Description modified.
+-Signal dependency 'CarModSts' removed.
+-Signal dependency 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'UsgModSts' removed.
++前置条件：
++1.配置字
++\
++2.整车条件
++当 CarModSts = CarModNorm(0x0), CarModTrnsp(0x1), CarModFcy(0x2), CarModCrash(0x3),
++CarModShow(0x4), CarModDyno(0x5), CarModCali(0x6), CarModMiant(0x7) And
++UsgModSts = Standby(1), Convenience(2), Driving(4), Parking(5)时，
++音频对LOCP(侧向障碍物防碰撞)音效报警提示执行发音动作；
++系统逻辑:
++信号(XX) 待定
++声音播报的信号值X待定
++1 开机自检过程(假定2S)中，不对LOCP(侧向障碍物防碰撞)音效报警提示信号(XX)的值做处理；
++2 开启自检完成时，LOCP(侧向障碍物防碰撞)音效报警提示信号(XX)的值默认值是0，信号(XX)由其他值变化为X
++时，声音提示一声。
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 12085
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [12085]
++++ 差分10327 [12085]
+@@ -7,70 +7,14 @@
+ 2、 CarModSts=0x0-0x7
+ 输入信号：
+ SignalName
+-TPMS_FLWarn
+-TPMS_FRWarn
+-TPMS_RLWarn
+-TPMS_RRWarn
+ 输出信号：
+ SignalName
+ /
+ 显示/声音要求：
+-胎压过高、胎压过低、胎温过高、轮胎快速漏气、胎压系统未学习、胎压传感器数据丢失、胎压传感器电量低文言
+-提示，弹窗提示5s，具体以HMI设计为准
++胎压低、胎温高、轮胎快速漏气、胎压传感器未学习等，文言提示+声音提醒，具体以HMI设计为准
+ 功能描述：
+ 指示 逻辑
+-胎压过高 满足以下任意条件：
+-1、 TPMS_FLWarn=0x4
+-2、 TPMS_FRWarn=0x4
+-3、 TPMS_RLWarn=0x4
+-4、 TPMS_RRWarn=0x4
+-胎压过低 满足以下任意条件：
+-1、 TPMS_FLWarn=0x7
+-2、 TPMS_FRWarn=0x7
+-3、 TPMS_RLWarn=0x7
+-4、 TPMS_RRWarn=0x7
+-胎温过高 满足以下任意条件：
+-1、 TPMS_FLWarn=0x5
+-2、 TPMS_FRWarn=0x5
+-3、 TPMS_RLWarn=0x5
+-4、 TPMS_RRWarn=0x5
+-轮胎快速漏气 满足以下任意条件：
+-1、 TPMS_FLWarn=0x6
+-2、 TPMS_FRWarn=0x6
+-
+-3、 TPMS_RLWarn=0x6
+-4、 TPMS_RRWarn=0x6
+-胎压系统未学习 满足以下任意条件：
+-1、 TPMS_FLWarn=0x9
+-2、 TPMS_FRWarn=0x9
+-3、 TPMS_RLWarn=0x9
+-4、 TPMS_RRWarn=0x9
+-胎压传感器数据丢失 满足以下任意条件：
+-1、 TPMS_FLWarn=0x2
+-2、 TPMS_FRWarn=0x2
+-3、 TPMS_RLWarn=0x2
+-4、 TPMS_RRWarn=0x2
+-胎压传感器电量低 满足以下任意条件：
+-1、 TPMS_FLWarn=0x3
+-2、 TPMS_FRWarn=0x3
+-3、 TPMS_RLWarn=0x3
+-4、 TPMS_RRWarn=0x3
+ 故障及恢复处理：
+-1、连续＜【Timeout】时间内未收到【 TPMS_FLWarn， TPMS_FRWarn， TPMS_RLWarn， TPMS_RRWarn】信
+-号，保持当前状态不变；
+-2、判断【 TPMS_FLWarn， TPMS_FRWarn， TPMS_RLWarn， TPMS_RRWarn】信号丢失，结束提醒；
++1、连续＜【Timeout】时间内未收到【】信号，保持当前状态不变；
++2、判断【】信号丢失，结束提醒；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Signal dependency 'TPMS_FLWarn' added.
+-Signal dependency 'TPMS_FRWarn' added.
+-Signal dependency 'TPMS_RLWarn' added.
+-Signal dependency 'TPMS_RRWarn' added.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'TPMS_FLWarn' added.
+-Description Reference 'TPMS_FRWarn' added.
+-Description Reference 'TPMS_RLWarn' added.
+-Description Reference 'TPMS_RRWarn' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 12144
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [12144]
++++ 差分10327 [12144]
+@@ -14,7 +14,6 @@
+ 显示要求：
+ /
+ 功能描述：
+-
+ 通过中控屏设置对驾驶信息系统的行车电脑显示复位：
+ 1、自复位后行驶里程、自复位后行驶时间、自复位后平均电耗、自复位后平均油耗（增程版型），复位清零；
+ 2、手动模式下的背光亮度等级恢复到默认等级；
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 12145
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [12145]
++++ 差分10327 [12145]
+@@ -1,16 +1,24 @@
+ 需求描述:
+ 序号 功能 文言
+-以HMI设计为准 声音 等级 CarModSts UsgModSts
+-1 动力电池热失控
+-电池热失控，请
+-立即离开并远离
+-车辆
+-搭配上红色的感
+-叹号
++以HMI设计为准 声音 CarModSts UsgModSts
++1 动力电池热失控 动力电池热失控，
++报警存在一直显示
+ 4Hz通用提示
+-音，报警时长
+-跟随信号
+-S-001-001
++音，报警时长跟
++随信号
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++2 充电/放电 充电/放电界面，报
++警存在一直显示/
+ 0x0 CarModNorm
+ 0x1 CarModTrnsp
+ 0x2 CarModFcy
+@@ -23,1010 +31,479 @@
+ 0x2 Convenience
+ 0x4 Driving
+ 0x5 Parking
+-2 倒车雷达提示音/ 以倒车雷达提
+-示音定义为准S-002-001
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-3 制动系统故障 制动系统故障，
++3 门开
++门开弹框界面，5s
++之后变为小图标显
++示。当有报警存
++在，或被更高优先
++级报警打断，则不
++显示弹框，直接显
++示门开小图标
++1Hz门开提示
++音，报警时长跟
++随信号
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x1 Standby
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++4 安全带未系 图标提示，无弹窗
++Seatbelt提示音
++（1Hz）
++参见
++SeatBeltWarnin
++g主驾/副驾/后
++左/后中/后右安
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++全带未系定义0x7 CarModMiant
++5 前排未正确佩戴安全带图标提示，无弹窗
++Seatbelt提示音
++（1Hz）
++参见
++NoProperlySeat
++BeltWarning主
++驾/副驾安全带
++未正确佩戴定义
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++6 油箱盖未关 请关闭加油口盖，
+ 弹窗提示5s
+ 1Hz通用提示
+-音，报警时长A-001-0010x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 Convenience
+-0x4 Driving
+-
+-1声
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x5 Parking
+-4 驱动电机故障 驱动电机故障，
+-弹窗提示5s / A-001-002
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-5
+-动力系统严重故
+-障，车辆将立即下
+-高压
+-动力系统严重故
+-障，车辆将立即
+-下高压，弹窗提
++音，报警时长3
++声
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++7 驻车坡度过大，请安全
++停车
++驻车坡度过大，请
++安全停车，弹窗提
+ 示5s
+-/ A-001-003
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-6 轮胎快速漏气
+-XX轮胎快速漏
+-气，弹窗提示5s
+-（左前>左后>右
+-后>右前）
+-/ A-001-004
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-7
+-动力系统故障，车
+-辆即将下高压，请
+-靠边停车
+-动力系统故障，
+-车辆即将下高
+-压，请靠边停
+-车，弹窗提示5s
+-/ A-002-001
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-8 动力电池电量低，
+-已禁止继续行驶
+-动力电池电量
+-低，已禁止继续
+-行驶，弹窗提示
+-5s
+-1Hz通用提示
+-音，报警时长
+-3声
+-A-002-002
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-9 动力系统故障，请
+-联系服务中心
+-动力系统故障，
+-请联系服务中
+-心，弹窗提示5s
+-/ A-003-001
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-10 驻车力不足，请安
+-全停车
+-驻车力不足，请
+-安全停车，弹窗
++1Hz通用提示
++音，报警时长3
++声
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++8 车辆无法驻车，有溜坡
++风险
++车辆无法驻车，有
++溜坡风险，弹窗提
++示5s
++/
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++9 制动系统故障 制动系统故障，弹
++窗提示5s
++1Hz通用提示
++音，报警时长1
++声
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++10 制动液位低 制动液位低，弹窗
+ 提示5s
+ 1Hz通用提示
+-音，报警时长
+-1声
+-A-003-002
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-11 充电枪连接，无法
+-行驶
+-充电枪连接，无
+-法行驶，弹窗提/ A-003-0030x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 Convenience
+-0x4 Driving
+-
+-示5s
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x5 Parking
+-12 动力系统故障，车
+-辆无法行驶
+-动力系统故障，
+-车辆无法行驶，
++音，报警时长1
++声
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++11 制动液位传感器故障制动液位传感器故
++障，弹窗提示5s
++1Hz通用提示
++音，报警时长1
++声
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++12 电子制动力分配故障电子制动力分配故
++障，弹窗提示5s
++1Hz通用提示
++音，报警时长1
++声
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++0x7 CarModMiant
++13 驱动电机故障 驱动电机故障，弹
++窗提示5s
++1Hz通用提示
++音，报警时长3
++声
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++14 驻车制动系统故障驻车制动系统故
++障，弹窗提示5s /
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++15 驱动电机过热 驱动电机过热，弹
++窗提示5s
++1Hz通用提示
++音，报警时长3
++声
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++16 驾驶员疲劳驾驶 请勿疲劳驾驶，弹
++窗提示5s /
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++17 驾驶员分心驾驶 请勿分心驾驶，弹
++窗提示5s /
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++18 倒挡提示音 / 1Hz倒挡提示
++音，1声
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++19 陡坡缓降功能故障陡坡缓降功能故
++障，弹窗提示5s /
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++20 安全气囊故障 安全气囊故障，弹
++窗提示5s /
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++0x7 CarModMiant
++21 自动驻车功能故障自动驻车功能故
++障，弹窗提示5s /
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++22 换挡器故障
++换挡器故障，当前
++状态禁止换挡，弹
++窗提示5s
++/
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++23 空气悬架控制系统故障空气悬架控制系统
++故障，弹窗提示5s /
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++24 动力电池电量低 动力电池电量低，
+ 弹窗提示5s
+-/ B-001-001
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-13 制动液位低 制动液位低，弹
+-窗提示5s
+-1Hz通用提示
+-音，报警时长
+-1声
+-B-001-002
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-14 制动液位传感器故
+-障
+-制动液位传感器
+-故障，弹窗提示
+-5s
+-1Hz通用提示
+-音，报警时长
+-1声
+-B-001-003
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-15 胎压系统未学习
+-XX胎压系统未学
+-习，弹窗提示5s
+-（左前>左后>右
+-后>右前）
+-/ B-001-004
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-16 陡坡缓降功能故障陡坡缓降功能故
+-障，弹窗提示5s / B-001-005
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-17 自动驻车功能故障自动驻车功能故
+-障，弹窗提示5s / B-001-006
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-18 倒挡提示音 / 1Hz倒挡提示
+-音，1声 B-002-001
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-19 驱动电机过热 驱动电机过热，
+-弹窗提示5s / B-002-0020x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 Convenience
+-0x4 Driving
+-
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x5 Parking
+-20 动力电池电量低，
+-部分功能受限
+-动力电池电量
+-低，部分功能受
+-限，弹窗提示5s
+-1Hz通用提示
+-音，报警时长
+-3声
+-B-002-003
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-21 电子制动力分配故
+-障
+-电子制动力分配
+-故障，弹窗提示
+-5s
+-1Hz通用提示
+-音，报警时长
+-1声
+-B-002-004
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-22 安全带未系 /
+-Seatbelt提示
+-音（1Hz）
+-参见
+-SeatBeltWarn
+-ing主驾/副驾/
+-后左/后中/后
+-右安全带未系
+-定义
+-B-002-005
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-23 前排未正确佩戴安
+-全带 /
+-Seatbelt提示
+-音（1Hz）
+-参见
+-NoProperlySe
+-atBeltWarning
+-主驾/副驾安
+-全带未正确佩
+-戴定义
+-B-002-006
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-24 胎压传感器数据丢
+-失
+-XX胎压传感器数
+-据丢失，弹窗提
+-示5s
+-（左前>左后>右
+-后>右前）
+-/ B-002-007
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-25 胎温过高
+-XX胎温过高，弹
+-窗提示5s
+-（左前>左后>右
+-后>右前）
+-/ B-002-008
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-26 胎压过低
+-XX胎压过低，弹
+-窗提示5s
+-（左前>左后>右
+-后>右前）
+-/ B-002-009
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-
+-27 胎压过高
+-XX胎压过高，弹
+-窗提示5s
+-（左前>左后>右
+-后>右前）
+-/ B-002-010
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-28 动力电池电量低动力电池电量
+-低，弹窗提示5s
+-1Hz通用提示
+-音，报警时长
+-3声
+-B-002-011
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-29 驻车制动系统故障驻车制动系统故
+-障，弹窗提示5s / B-002-012
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-30 驾驶员疲劳驾驶请勿疲劳驾驶，
+-弹窗提示5s / B-003-001
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-31 驾驶员分心驾驶请勿分心驾驶，
+-弹窗提示5s / B-003-002
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-32 门开
+-门开弹框界面，
+-5s之后变为小图
+-标显示。当有报
+-警存在，或被更
+-高优先级报警打
+-断，则不显示弹
+-框，直接显示门
+-开小图标
+-1Hz门开提示
+-音，报警时长
+-跟随信号
+-B-003-003
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
++1Hz通用提示
++音，报警时长3
++声
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++25 动力电池电量低，部分
++功能受限
++动力电池电量低，
++部分功能受限，弹
++窗提示5s
++1Hz通用提示
++音，报警时长3
++声
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++26 动力电池电量低，已禁
++止继续行驶
++动力电池电量低，
++已禁止继续行驶，
++弹窗提示5s
++1Hz通用提示
++音，报警时长3
++声
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++27 驱动功率受限 驱动功率受限，弹
++窗提示5s
++1Hz通用提示
++音，报警时长1
++声
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++28 油箱盖开启动效 油箱盖开启动效，
++显示5s /
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
+ 0x1 Standby
+ 0x2 Convenience
+ 0x4 Driving
+ 0x5 Parking
+-33 安全气囊故障 安全气囊故障，
+-弹窗提示5s / B-003-004
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-34 空气悬架控制系统
+-故障
+-空气悬架控制系
+-统故障，弹窗提
+-示5s
+-/ B-004-001
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-
+-35 动力系统故障，车
+-辆无法上高压
+-动力系统故障，
+-车辆无法上高
+-压，弹窗提示5s
+-/ C-001-001
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-36 动力系统降级，请
+-注意驾驶
+-动力系统降级，
+-请注意驾驶，弹
+-窗提示5s
+-/ C-001-002
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-37 胎压传感器电量低
+-XX胎压传感器电
+-量低，弹窗提示
+-5s
+-/ C-001-003
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-38 车辆无法驻车，有
+-溜坡风险
+-车辆无法驻车，
+-有溜坡风险，弹
+-窗提示5s
+-/ C-001-004
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-39 请踩下刹车踏板请踩下刹车踏
+-板，弹窗提示5s / C-001-005
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-40 请降低车速 请降低车速，弹
+-窗提示5s / C-001-006
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-41
+-转向灯有故障，为
+-了安全驾驶，请及
+-时修理
+-转向灯有故障，
+-为了安全驾驶，
+-请及时修理，弹
+-窗提示5s
+-/ C-001-007
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-42 雨刮故障 雨刮故障，弹窗
+-提示5s / C-001-008
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-
+-43 充电口盖灯有故
+-障，请及时修理
+-充电口盖灯有故
+-障，请及时修
+-理，弹窗提示5s
+-/ C-001-009
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-44 请关闭加油口盖请关闭加油口
+-盖，弹窗提示5s
+-1Hz通用提示
+-音，报警时长
+-3声
+-C-002-001
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-45 油箱盖开启动效动效显示 / C-002-002
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-46
++0x7 CarModMiant
++29 请踩下刹车踏板 请踩下刹车踏板，
++弹窗提示5s /
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++30 请降低车速 请降低车速，弹窗
++提示5s /
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++31 油箱泄压失败
+ 油箱泄压失败，请
+ 再次点击加油开
+-关，尝试加油
+-油箱泄压失败，
+-请再次点击加油
+-开关，尝试加
+-油，弹窗提示5s
+-/ C-002-003
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-47 当前状态禁止换挡当前状态禁止换
+-挡，弹窗提示5s / C-002-004
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-48 充电枪上锁/解锁失
+-败
+-充电枪上锁/解锁
+-失败，弹窗提示
++关，尝试加油，弹
++窗提示5s
++/
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++32 电池续航里程正在校准
++中
++电池续航里程正在
++校准中，弹窗提示
+ 5s
+-/ C-002-005
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-49
+-此模式下不可行
+-驶，请退出当前模
+-式
+-此模式下不可行
+-驶，请退出当前
+-模式，弹窗提示
+-5s
+-/ C-002-006
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-50 雨量传感器故障雨量传感器故
+-障，弹窗提示5s / C-002-007
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-
+-51 未找到有效钥匙未找到有效钥
+-匙，弹窗提示5s / C-002-008
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-52 实体钥匙电池电量
+-低
+-实体钥匙电池电
+-量低，弹窗提示
+-5s
+-/ C-002-009
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-53
+-位置灯有故障，为
+-了安全驾驶，请及
+-时修理
+-位置灯有故障，
+-为了安全驾驶，
+-请及时修理，弹
+-窗提示5s
+-/ C-003-001
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-54
+-远光灯有故障，为
+-了安全驾驶，请及
+-时修理
+-远光灯有故障，
+-为了安全驾驶，
+-请及时修理，弹
+-窗提示5s
+-/ C-003-002
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-55
+-近光灯有故障，为
+-了安全驾驶，请及
+-时修理
+-近光灯有故障，
+-为了安全驾驶，
+-请及时修理，弹
+-窗提示5s
+-/ C-003-003
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-56
+-牌照灯有故障，为
+-了安全驾驶，请及
+-时修理
+-牌照灯有故障，
+-为了安全驾驶，
+-请及时修理，弹
+-窗提示5s
+-/ C-003-004
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-57
+-制动灯有故障，为
+-了安全驾驶，请及
+-时修理
+-制动灯有故障，
+-为了安全驾驶，
+-请及时修理，弹
+-窗提示5s
+-/ C-003-005
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-58
+-倒车灯有故障，为
+-了安全驾驶，请及
+-时修理
+-倒车灯有故障，
+-为了安全驾驶，
+-请及时修理，弹
+-窗提示5s
+-/ C-003-006
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-
+-59
+-后雾灯有故障，为
+-了安全驾驶，请及
+-时修理
+-后雾灯有故障，
+-为了安全驾驶，
+-请及时修理，弹
+-窗提示5s
+-/ C-003-007
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-60 防晕车功能已激活防晕车功能已激
+-活，弹窗提示5s / C-003-008
+-0x0 CarModNorm
+-0x1 CarModTrnsp
+-0x2 CarModFcy
+-0x3 CarModCrash
+-0x4 CarModShow
+-0x5 CarModDyno
+-0x6 CarModCali
+-0x7 CarModMiant
+-0x2 Convenience
+-0x4 Driving
+-0x5 Parking
+-61 转向提示音 / 跟随信号 C-004-002
++/
++0x0 CarModNorm
++0x1 CarModTrnsp
++0x2 CarModFcy
++0x3 CarModCrash
++0x4 CarModShow
++0x5 CarModDyno
++0x6 CarModCali
++0x7 CarModMiant
++0x2 Convenience
++0x4 Driving
++0x5 Parking
++33 左/右转向提示音 / Tick/Tock
+ 0x0 CarModNorm
+ 0x1 CarModTrnsp
+ 0x2 CarModFcy
+@@ -1039,16 +516,10 @@
+ 0x2 Convenience
+ 0x4 Driving
+ 0x5 Parking
+-1、优先级策略：
+-S级：车辆严重故障，需立即弃车，如热失控车辆即将爆炸；
+-A级：严重故障，需要用户立即操作，如停车、下车、接管等；
+-B级：一般故障，当前处不处理都可以；
+-C级：普通提示，如换挡未踩刹车提示等
+-2、弹窗覆盖策略：
+-按照报警项目整体划分优先级，包含弹窗和声音，S＞A＞B＞C；
+-A-001>A-002>A-003；
+-A-001-001 > A-002-001；
+-优先级不同：高优先级抢占低优先级，高优先级报警完成后，如低优先级报警仍存在，低优先级报警可触发；
++1、报警类型：按弹窗提醒，报警音提醒，弹窗和报警音提醒分为三大类；
++2、优先级：按照报警项目整体划分优先级，包含弹窗和声音，按序号优先级递减，且按照不同整车模式划分；高
++优先级报警提示可以打断低优先级报警提示，高优先级报警提示结束后，若低优先级报警仍存在，低优先级报警可
++触发；
+ 3、报警时间：弹窗提醒时间和报警音提醒时间分为固定时间(如5s)和跟随信号两种：
+ a、固定时间，触发后提醒时间（如5s）到达即结束直至下一次触发；
+ b、跟随信号，触发后信号/请求保持情况下一直提醒直至信号/请求解除；
+@@ -1060,11 +531,3 @@
+ 警条件持续的时间≥5s时，提醒界面只显示5s；当报警时间不足2s时，提醒界面持续显示2s；
+ 6、转向提示音优先级最低，但在当前无报警占用声音资源时，转向提示音需要播放，在有高优先级声音报警时，
+ 可打断转向提示音，打断结束后如再无其它高优先级声音报警，则继续播放转向提示音；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' added.
+-Description Reference 'UsgModSts' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 12146
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [12146]
++++ 差分10327 [12146]
+@@ -1,6 +1,6 @@
+ 需求描述:
+ 配置字：
+-驱动动力形式BAE
++纯电/增程
+ 整车条件：
+ 指示需同时满足以下两个条件：
+ 1、 UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking
+@@ -17,10 +17,10 @@
+ /
+ 显示要求：
+ 1、显示内容和配置字关联：
+-a、支持显示自启动后行驶里程、自启动后行驶时间、自启动后平均电耗、自复位后行驶里程、自复位后行驶时
+-间、自复位后平均电耗；
+-b、配置字为驱动动力形式BAE01（纯电动）时，不支持显示自启动后平均油耗、自复位后平均油耗；
+-c、配置字为驱动动力形式BAE02（增程式混动）时，支持显示自启动后平均油耗、自复位后平均油耗；
++a、配置字为纯电版型时，支持显示自启动后行驶里程、自启动后行驶时间、自启动后平均电耗、自复位后行驶里
++程、自复位后行驶时间、自复位后平均电耗；
++b、配置字为增程版型时，支持显示自启动后行驶里程、自启动后行驶时间、自启动后平均电耗、自启动后平均油
++耗、自复位后行驶里程、自复位后行驶时间、自复位后平均电耗、自复位后平均油耗；
+ 2、自启动/复位后行驶里程：
+ a、显示范围：0~9999.9km，超过最大值后从0km重新开始；
+ b、显示精度：0.1km；
+@@ -48,7 +48,6 @@
+ 1、车速＞0定义：
+ VehicleSpeed_SigGrp- VehicleSpeedValid=0x0， VehicleSpeed_SigGrp- VehicleSpeed≠0x0/0x7FFF；
+ 2、自启动后行驶里程：
+-
+ a、计算周期、计算处理方式、计算存储精度同总计里程；
+ b、当 UsgModSts由（0x2 Convenience or 0x4 Driving or 0x5 Parking）变化为（0x0 Sleeping or 0x1 Standby）
+ 后，再次变为（0x2 Convenience or 0x4 Driving or 0x5 Parking）时，自启动后行驶里程自动清零；
+@@ -107,7 +106,6 @@
+ a、当 PrpsnSysActv=0x1时开始计算；
+ b、计算公式：Avg_Consum[L /100km] = {（Total_Consum + 0.65L）*100 / (AvgConsum_Trip[km] +10km)}；
+ 其中，
+-
+ Total_Consum=∑（100ms_Consum1，100ms_Consum2，100ms_Consum3…....100ms_ConsumN）；
+ 100ms_Consum= DynFuelConsInst*V*0.001/3600
+ 变量：
+@@ -152,17 +150,3 @@
+ c、判断【 DynEgyConsInst】信号丢失，自启动/复位后平均电耗，不进行累计；
+ d、判断【 DynFuelConsInst】信号丢失，自启动/复位后平均油耗，不进行累计；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'PrpsnSysActv' removed.
+-Description Reference 'VehicleSpeed_SigGrp' removed.
+-Description Reference 'DynEgyConsInst' removed.
+-Description Reference 'DynFuelConsInst' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'PrpsnSysActv' added.
+-Description Reference 'VehicleSpeed_SigGrp' added.
+-Description Reference 'DynEgyConsInst' added.
+-Description Reference 'DynFuelConsInst' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 12147
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [12147]
++++ 差分10327 [12147]
+@@ -1,5 +1,4 @@
+ 需求描述:
+-
+ 配置字：
+ /
+ 整车条件：
+@@ -8,9 +7,7 @@
+ 2、 CarModSts=0x0-0x7
+ 输入信号：
+ SignalName
+-DMSDriverDistractedStatus
+-DMSDriverFatigueStatus
+-DMSDriverStatusValid
++/
+ 输出信号：
+ SignalName
+ /
+@@ -21,27 +18,10 @@
+ 功能描述：
+ 指示 逻辑
+ 请勿疲劳驾驶，文言提示 内部信号，视觉算法判断为疲劳驾驶
+-同时满足以下条件：
+-1、 DMSDriverStatusValid=0x1
+-2、 DMSDriverFatigueStatus=0x3
+-请勿分心驾驶，文言提示 内部信号，视觉算法判断为分心驾驶
+-同时满足以下条件：
+-1、 DMSDriverStatusValid=0x1
+-2、 DMSDriverDistractedStatus=0x3
++请勿分心驾驶，文言提示 内部信号，视觉算法判断为分心驾驶，含长分心、短分
++心
+ 无 疲劳/分心驾驶，文言提示 不满足上述条件
+ 故障及恢复处理：
+ 1、连续＜【Timeout】时间内未收到疲劳分心驾驶内部信号，保持当前状态不变；
+ 2、判断疲劳分心驾驶内部信号信号丢失，结束提醒；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Signal dependency 'DMSDriverFatigueStatus' added.
+-Signal dependency 'DMSDriverDistractedStatus' added.
+-Signal dependency 'DMSDriverStatusValid' added.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'DMSDriverDistractedStatus' added.
+-Description Reference 'DMSDriverFatigueStatus' added.
+-Description Reference 'DMSDriverStatusValid' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 12159
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [12159]
++++ 差分10327 [12159]
+@@ -1,4 +1 @@
+ 需求描述:
+-E3暂不考虑
+-(1) => E3(2):
+-Description modified.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 12321
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [12321]
++++ 差分10327 [12321]
+@@ -1,12 +1,8 @@
+ 需求描述:
+ 1、闪烁同步：相关功能的闪烁定义（如报警灯，声音提醒等）, 如果闪烁定义的属性一样（频率，占空比等），则
+ 所有相应功能的闪烁需要同步；
+-安全带TT灯闪烁需与安全带未系声音提醒同步，不要求安全带TT灯与其他TT灯闪烁同步；
+ 2、车速条件定义：除特殊定义外，所有需要车速作为判断条件的逻辑，采用指示车速；
+ 3、数值取整定义：除特殊定义外，采用数值向下取整运算，即选择舍弃小数后的整数数值；
+ 4、信号丢失定义：除特殊定义外，检测出信号对应报文连续丢失时间≥10倍报文周期，则判断信号对应的报文丢
+ 失；判断信号丢失后，重新接收到1帧丢失的信号，即判断信号恢复；
+ 5、如果报文中含MsgCounter和Checksum信号，当MsgCounter或Checksum校验不通过时，认为此报文失效；
+-
+-(1) => (2):
+-Description modified.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 12650
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [12650]
++++ 差分10327 [12650]
+@@ -1,9 +1,9 @@
+ 需求描述:
+ 配置字：
+-驱动动力形式BAE
++/
+ 整车条件：
+ 指示需同时满足以下两个条件：
+-1、 UsgModSts=0x2 Convenience or 0x4 Driving or 0x5 Parking
++1、 UsgModSts=0x1 Standby or 0x2 Convenience or 0x4 Driving or 0x5 Parking
+ 2、 CarModSts=0x0-0x7
+ 输入信号：
+ SignalName
+@@ -14,8 +14,6 @@
+ 显示要求：
+ 加油口盖开启动效显示5s
+ 功能描述：
+-1、驱动动力形式BAE01（纯电动）时不支持显示；驱动动力形式BAE02（增程式混动）时支持显示；
+-
+ 指示 逻辑
+ 加油口盖开启动效 FillerLidDCorAcDcStsIndcr=0x2
+ 无 加油口盖开启动效 不满足上述条件
+@@ -23,11 +21,3 @@
+ 1、连续＜【Timeout】时间内未收到【 FillerLidDCorAcDcStsIndcr】信号，加油口盖显示保持当前状态不变；
+ 2、判断【 FillerLidDCorAcDcStsIndcr】信号丢失，加油口盖显示为关闭状态；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-E3(1) => E3(2):
+-Description modified.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'FillerLidDCorAcDcStsIndcr' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'FillerLidDCorAcDcStsIndcr' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 12652
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [12652]
++++ 差分10327 [12652]
+@@ -1,7 +1,6 @@
+ 需求描述:
+-
+ 配置字：
+-驱动动力形式BAE
++/
+ 整车条件：
+ 指示需同时满足以下两个条件：
+ 1、 UsgModSts=0x1 Standby or 0x2 Convenience or 0x4 Driving or 0x5 Parking
+@@ -15,7 +14,6 @@
+ 显示要求：
+ 油箱泄压失败，请再次点击加油开关，尝试加油，弹窗提示5s，具体以HMI设计为准
+ 功能描述：
+-1、驱动动力形式BAE01（纯电动）时不支持显示；驱动动力形式BAE02（增程式混动）时支持显示；
+ 指示 逻辑
+ 油箱泄压失败，请再次点击加油开
+ 关，尝试加油
+@@ -28,11 +26,3 @@
+ 态不变；
+ 2、判断【 EngTankPressReleaseFailedPrompt】信号丢失，无油箱泄压失败文言显示；
+ 3、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'EngTankPressReleaseFailedPrompt' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'EngTankPressReleaseFailedPrompt' added.
+
+──────────────────────────────────────────────────────────────────────
+需求ID: 12659
+──────────────────────────────────────────────────────────────────────
+--- 差分2E3 [12659]
++++ 差分10327 [12659]
+@@ -1,6 +1,6 @@
+ 需求描述:
+ 配置字：
+-驱动动力形式BAE
++/
+ 整车条件：
+ 指示需同时满足以下两个条件：
+ 1、 UsgModSts=0x1 Standby or 0x2 Convenience or 0x4 Driving or 0x5 Parking
+@@ -17,29 +17,17 @@
+ 1、请关闭加油口盖，弹窗提示5s，具体以HMI设计为准
+ 2、声音提醒（1Hz通用提示音，报警时长3声）
+ 功能描述：
+-1、驱动动力形式BAE01（纯电动）时不支持显示；驱动动力形式BAE02（增程式混动）时支持显示；
+ 指示 逻辑
+ 请关闭加油口盖，文言提示+声音提醒
+ 同时满足以下条件：
+ 1、 FillerLidDCorAcDcStsIndcr=0x2
+ 2、 CcuICD_SigGrp- VehicleSpdDisplayValid=0x1
+ 3、 CcuICD_SigGrp- VehicleSpdDisplay≥3km/h
+-无 请关闭加油口盖，文言提示+声音提 不满足上述条件
+-
+-醒
++无 请关闭加油口盖，文言提示+声音提
++醒 不满足上述条件
+ 故障及恢复处理：
+ 1、连续＜【Timeout】时间内未收到【 FillerLidDCorAcDcStsIndcr】信号，显示保持当前状态不变；
+ 2、判断【 FillerLidDCorAcDcStsIndcr】信号丢失，按照加油口盖显示为关闭状态处理；
+ 3、判断【 CcuICD_SigGrp- VehicleSpdDisplay， CcuICD_SigGrp- VehicleSpdDisplayValid】信号丢失，按照车速
+ 0km/h处理；
+ 4、MsgCounter和Checksum信号（如涉及）校验失败，判断报文无效，同信号丢失状态定义；
+-(1) => E3(2):
+-Description modified.
+-Description Reference 'UsgModSts' removed.
+-Description Reference 'CarModSts' removed.
+-Description Reference 'CcuICD_SigGrp' removed.
+-Description Reference 'FillerLidDCorAcDcStsIndcr' removed.
+-Description Reference 'UsgModSts' added.
+-Description Reference 'CarModSts' added.
+-Description Reference 'CcuICD_SigGrp' added.
+-Description Reference 'FillerLidDCorAcDcStsIndcr' added.
+
